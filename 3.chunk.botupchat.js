@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 239:
+/***/ 238:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -104,7 +104,7 @@ webpackJsonp([3],{
 /* harmony default export */ __webpack_exports__["a"] = ({
   components: {
     VueMomentsAgo: function VueMomentsAgo() {
-      return __webpack_require__.e/* import() */(0/* duplicate */).then(__webpack_require__.bind(null, 235));
+      return __webpack_require__.e/* import() */(0/* duplicate */).then(__webpack_require__.bind(null, 234));
     }
   },
   props: ["conversations"],
@@ -230,14 +230,14 @@ webpackJsonp([3],{
 
 /***/ }),
 
-/***/ 244:
+/***/ 243:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Message_vue__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Message_vue__ = __webpack_require__(238);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f6150d0e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Message_vue__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f6150d0e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Message_vue__ = __webpack_require__(248);
 var normalizeComponent = __webpack_require__(22)
 /* script */
 
@@ -266,7 +266,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 249:
+/***/ 248:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

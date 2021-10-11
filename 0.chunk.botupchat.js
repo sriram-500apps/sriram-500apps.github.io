@@ -1,17 +1,17 @@
 webpackJsonp([0],{
 
-/***/ 235:
+/***/ 234:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_moments_ago_vue__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_moments_ago_vue__ = __webpack_require__(244);
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0__components_moments_ago_vue__["a" /* default */]);
 
 /***/ }),
 
-/***/ 240:
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -135,15 +135,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["default"].prototype.moment = __WEBPACK_IMPORT
 
 /***/ }),
 
-/***/ 245:
+/***/ 244:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_vue_loader_lib_selector_type_script_index_0_moments_ago_vue__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_vue_loader_lib_selector_type_script_index_0_moments_ago_vue__ = __webpack_require__(239);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_2961c0da_hasScoped_true_buble_transforms_vue_loader_lib_selector_type_template_index_0_moments_ago_vue__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_2961c0da_hasScoped_true_buble_transforms_vue_loader_lib_selector_type_template_index_0_moments_ago_vue__ = __webpack_require__(247);
 function injectStyle (ssrContext) {
-  __webpack_require__(246)
+  __webpack_require__(245)
 }
 var normalizeComponent = __webpack_require__(22)
 /* script */
@@ -173,13 +173,13 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 246:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(247);
+var content = __webpack_require__(246);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -187,7 +187,7 @@ var update = __webpack_require__(62)("c4ea1b4e", content, true, {});
 
 /***/ }),
 
-/***/ 247:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(61)(false);
@@ -202,7 +202,7 @@ exports.push([module.i, ".vue-moments-ago[data-v-2961c0da]{font-size:12px}", ""]
 
 /***/ }),
 
-/***/ 248:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
