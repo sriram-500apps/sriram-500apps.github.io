@@ -1,22 +1,9 @@
 webpackJsonp([0],{
 
-/***/ 235:
+/***/ 233:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_moments_ago_vue__ = __webpack_require__(245);
-
-/* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0__components_moments_ago_vue__["a" /* default */]);
-
-/***/ }),
-
-/***/ 240:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(115);
 //
 //
 //
@@ -24,128 +11,102 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue__["default"].prototype.moment = __WEBPACK_IMPORTED_MODULE_1_moment__["a" /* default */];
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["a"] = ({
-  data() {
+  name: "Header",
+  components: {},
+  props: {
+    conversationHeader: Boolean
+  },
+  data: function data() {
     return {
-      epochs: ["year", "month", "day", "hour", "minute"],
-      epochs_kr: ["년", "달", "일", "시간", "분"],
-      epochs_jp: ["年", "月", "日", "時", "分"],
-      year: 31536000,
-      month: 2592000,
-      day: 86400,
-      hour: 3600,
-      minute: 60,
-      humanReadable: "",
-      humanDifference: 0,
-      humanWord: "moment"
+      UIPrefs: window._Botup.UIPrefs.prefs
     };
   },
+  mounted: function mounted() {
+    var _this = this;
 
-  props: {
-    prefix: {
-      type: String,
-      default: "posted"
-    },
-    suffix: {
-      type: String,
-      default: "ago"
-    },
-    date: {
-      type: String,
-      required: true
-    },
-    lang: {
-      type: String,
-      default: "en"
-    }
-  },
-
-  mounted() {
-    setInterval(() => {
-      this.getSeconds(this.date);
-    }, 1000);
-  },
-
-  filters: {
-    plural(value, name, lang) {
-      let plural;
-
-      if (value === 0) {
-        if (lang == "kr") {
-          return "몇" + name;
-        } else if (lang == "jp") {
-          return "何" + name;
-        } else {
-          return "a few " + name + "s";
-        }
-      } else if (value > 1) {
-        if (lang == "en") {
-          return value + " " + name + "s";
-        } else {
-          return value + " " + name + "";
-        }
-      } else {
-        return value + " " + name;
-      }
-    }
-
+    // Hide chat widget when user click on header
+    document.addEventListener("click", function (event) {
+      if (typeof event.target.className == "string" && event.target.className.includes("profile")) return _this.minimize();
+    });
   },
   methods: {
-    getSeconds(time) {
-      let seconds = Object(__WEBPACK_IMPORTED_MODULE_1_moment__["a" /* default */])().diff(Object(__WEBPACK_IMPORTED_MODULE_1_moment__["a" /* default */])(time), "seconds");
-      this.humanReadable = this.getDuration(seconds);
+    minimize: function minimize() {
+      this.$router.push({
+        name: "icon",
+        params: {
+          active: false
+        }
+      }); // To set chat status in vuex while chat end session
 
-      if (this.humanReadable) {
-        this.humanDifference = this.humanReadable.interval;
-        this.humanWord = this.humanReadable.humanEpoch;
-      }
+      window._Botup.State.commit("setChatStatus", false);
     },
+    // Redirect to conversation details view
+    viewHistory: function viewHistory() {
+      if (window._Botup.State.getters.getActiveConversation.length == 0) window._Botup.State.commit("setActiveConversation", window._Botup.State.getters.getCurrentMessages);
+      this.$router.push("/conversations");
+    },
+    // Navigate to active conversation view
+    navigate: function navigate() {
+      var result = window._Botup.State.getters.getActiveConversation; // To set active conversation
 
-    getDuration(seconds) {
-      let epoch, interval;
-      let humanEpoch;
+      result.forEach(function (obj) {
+        window._Botup.State.commit("setMessages", obj);
+      });
 
-      for (let i = 0; i < this.epochs.length; i++) {
-        epoch = this.epochs[i];
+      window._Botup.State.commit("setActiveConversation", []);
 
-        if (this.lang == "kr") {
-          humanEpoch = this.epochs_kr[i];
-        } else if (this.lang == "jp") {
-          humanEpoch = this.epochs_jp[i];
-        } else {
-          humanEpoch = this.epochs[i];
+      this.$router.push({
+        name: "chat",
+        params: {
+          active: true
         }
+      }); // To set chat status in vuex while chat end session
 
-        interval = Math.floor(seconds / this[epoch]);
-
-        if (interval >= 1) {
-          return {
-            interval: interval,
-            humanEpoch: humanEpoch
-          };
-        }
-      }
+      window._Botup.State.commit("setChatStatus", true);
     }
-
   }
 });
 
 /***/ }),
 
-/***/ 245:
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_vue_loader_lib_selector_type_script_index_0_moments_ago_vue__ = __webpack_require__(240);
-/* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_2961c0da_hasScoped_true_buble_transforms_vue_loader_lib_selector_type_template_index_0_moments_ago_vue__ = __webpack_require__(248);
-function injectStyle (ssrContext) {
-  __webpack_require__(246)
-}
-var normalizeComponent = __webpack_require__(22)
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"botup-header-profile-section",style:(_vm.UIPrefs.chat_header.css)},[_c('div',{staticClass:"botup-profile-pic-section"},[_c('div',{staticClass:"botup-profile-flex"},[(!_vm.conversationHeader)?_c('b-img',{staticClass:"botup-gravatar",attrs:{"src":_vm.UIPrefs.chat_header.attr.gravatar}}):_c('div',{staticStyle:{"cursor":"pointer"},on:{"click":_vm.navigate}},[_c('b-img',{staticClass:"botup-chevron-left",attrs:{"src":"https://infinity.500apps.com/img/botup/chevron-left.svg"}})],1),_vm._v(" "),_c('div',{staticClass:"botupchat-margin-left",staticStyle:{"cursor":"pointer"},on:{"click":function($event){return _vm.minimize()}}},[(!_vm.conversationHeader)?_c('div',[_c('div',{staticClass:"botup-bot-name"},[_vm._v(_vm._s(_vm.UIPrefs.chat_header.attr.bot_name))]),_vm._v(" "),_c('div',{staticClass:"botup-bot-description"},[_vm._v(_vm._s(_vm.UIPrefs.chat_header.attr.bot_description))])]):_c('div',{staticClass:"botup-bot-conv-name"},[_vm._v("Conversation History")])])],1),_vm._v(" "),(!_vm.conversationHeader)?_c('div',{staticClass:"botup-history-icon-bg"},[_c('button',{staticClass:"botup-widget-history",attrs:{"aria-label":"Open conversation history"},on:{"click":function($event){return _vm.viewHistory()}}},[_c('b-img',{staticClass:"botup-history-icon",attrs:{"src":"https://infinity.500apps.com/img/botup/history-icon.svg"}})],1)]):_vm._e()])])}
+var staticRenderFns = []
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+
+/***/ }),
+
+/***/ 61:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Header_vue__ = __webpack_require__(233);
+/* empty harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0c3bc31e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Header_vue__ = __webpack_require__(239);
+var normalizeComponent = __webpack_require__(29)
 /* script */
 
 
@@ -154,62 +115,22 @@ var normalizeComponent = __webpack_require__(22)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-2961c0da"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_vue_loader_lib_selector_type_script_index_0_moments_ago_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_2961c0da_hasScoped_true_buble_transforms_vue_loader_lib_selector_type_template_index_0_moments_ago_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Header_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0c3bc31e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Header_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
 
-
-/***/ }),
-
-/***/ 246:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(247);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(62)("c4ea1b4e", content, true, {});
-
-/***/ }),
-
-/***/ 247:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(61)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".vue-moments-ago[data-v-2961c0da]{font-size:12px}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 248:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.date)?_c('span',{staticClass:"vue-moments-ago"},[_vm._v(_vm._s(_vm.prefix)+" "+_vm._s(_vm._f("plural")(_vm.humanDifference,_vm.humanWord, _vm.lang))+" "+_vm._s(_vm.suffix))]):_vm._e()}
-var staticRenderFns = []
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
 
 /***/ })
 
