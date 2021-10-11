@@ -1959,6 +1959,7 @@ var Storage = /*#__PURE__*/function () {
     key: "setSessionStorage",
     value: function setSessionStorage(key, value) {
       var expireTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      console.log("setSessionStorage");
       var storage = {
         expireTime: expireTime ? expireTime + this.getTimestamp() : null,
         value: value
@@ -17002,7 +17003,7 @@ function humanize(argWithSuffix, argThresholds) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Icon_vue__ = __webpack_require__(106);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2446d303_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Icon_vue__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_76e61fd6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Icon_vue__ = __webpack_require__(208);
 var normalizeComponent = __webpack_require__(58)
 /* script */
 
@@ -17019,7 +17020,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Icon_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2446d303_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Icon_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_76e61fd6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Icon_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -17063,7 +17064,9 @@ var Component = normalizeComponent(
 
       this.$nextTick(function () {
         // New page loaded
-        window._Botup.Bot.storage.setSessionStorage("lastURL", window.location.href); // Set icon
+        window._Botup.Bot.storage.then(function (storage) {
+          return storage.default.prototype.setSessionStorage("lastURL", window.location.href);
+        }); // Set icon
 
 
         if (active) _this.icon = window._Botup.UIPrefs.prefs.chat_icon.attr.active_image;else _this.icon = window._Botup.UIPrefs.prefs.chat_icon.attr.chat_image;
@@ -21427,6 +21430,7 @@ var Bot = /*#__PURE__*/function () {
 
     this.selectedMCQ = [];
     this.store = new __WEBPACK_IMPORTED_MODULE_8__store__["a" /* default */]();
+    this.storage = getStorage();
     var currentPage = window.location.href;
     getStorage().then(function (storage) {
       var lastURL = storage.default.prototype.getSessionStorage("lastURL"); // New page loaded
