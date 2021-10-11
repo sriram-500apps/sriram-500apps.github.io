@@ -30117,37 +30117,31 @@ var UIPrefs = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                getStorage().then( /*#__PURE__*/function () {
-                  var _ref = __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.mark(function _callee(storage) {
-                    return __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            if (!storage.getSessionStorage("prefs-".concat(window.flowID))) {
-                              _context.next = 6;
-                              break;
-                            }
+                getStorage().then( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.mark(function _callee() {
+                  return __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                      switch (_context.prev = _context.next) {
+                        case 0:
+                          if (!getSessionStorage("prefs-".concat(window.flowID))) {
+                            _context.next = 6;
+                            break;
+                          }
 
-                            _context.t0 = rerturn;
-                            _context.next = 4;
-                            return storage.getSessionStorage("prefs-".concat(window.flowID));
+                          _context.t0 = rerturn;
+                          _context.next = 4;
+                          return getSessionStorage("prefs-".concat(window.flowID));
 
-                          case 4:
-                            _context.t1 = _this.prefs = _context.sent;
-                            (0, _context.t0)(_context.t1);
+                        case 4:
+                          _context.t1 = _this.prefs = _context.sent;
+                          (0, _context.t0)(_context.t1);
 
-                          case 6:
-                          case "end":
-                            return _context.stop();
-                        }
+                        case 6:
+                        case "end":
+                          return _context.stop();
                       }
-                    }, _callee);
-                  }));
-
-                  return function (_x) {
-                    return _ref.apply(this, arguments);
-                  };
-                }()); // if (getStorage.then((storage) => storage.getSessionStorage(`prefs-${window.flowID}`))) return (this.prefs = await this.storage.getSessionStorage(`prefs-${window.flowID}`));
+                    }
+                  }, _callee);
+                }))); // if (getStorage.then((storage) => storage.getSessionStorage(`prefs-${window.flowID}`))) return (this.prefs = await this.storage.getSessionStorage(`prefs-${window.flowID}`));
 
                 data = new __WEBPACK_IMPORTED_MODULE_5__js_util_data__["a" /* default */]("https://botup.${region}.500apps.com/botup/uiprefs");
                 _context2.next = 4;
@@ -30197,8 +30191,8 @@ var UIPrefs = /*#__PURE__*/function () {
       this.prefs.chat_body.css.height = "max-height:".concat(DBPrefs.height, "px !important");
       this.prefs.chat.sound.playMessageIn = "https://infinity.500apps.com".concat(DBPrefs.playMessageIn);
       this.prefs.chat.sound.playMessageOut = "https://infinity.500apps.com".concat(DBPrefs.playMessageOut);
-      getStorage().then(function (storage) {
-        return storage.setSessionStorage("prefs-".concat(window.flowID), _this2.prefs);
+      getStorage().then(function () {
+        return setSessionStorage("prefs-".concat(window.flowID), _this2.prefs);
       }); // this.storage.setSessionStorage(`prefs-${window.flowID}`, this.prefs);
     } // Set default prefs
 
@@ -30256,8 +30250,8 @@ var UIPrefs = /*#__PURE__*/function () {
         }
       };
       if (!flag) return;
-      getStorage().then(function (storage) {
-        return storage.setSessionStorage("prefs-".concat(window.flowID), _this3.prefs);
+      getStorage().then(function () {
+        return setSessionStorage("prefs-".concat(window.flowID), _this3.prefs);
       }); // this.storage.setSessionStorage(`prefs-${window.flowID}`, this.prefs);
     }
     /**
