@@ -30090,17 +30090,15 @@ Object(__WEBPACK_IMPORTED_MODULE_2__parse_token__["a" /* addParseToken */])('x',
 
 
 
+
 var getStorage = function getStorage() {
   return new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 19));
 };
-
-
 
 var UIPrefs = /*#__PURE__*/function () {
   function UIPrefs() {
     __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck___default()(this, UIPrefs);
 
-    // this.storage = new storage();
     // Set default prefs
     this.defaultPrefs();
   } // To get UI prefs based on project ID
@@ -30117,45 +30115,46 @@ var UIPrefs = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return getStorage().then( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.mark(function _callee() {
-                  return __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          if (!getSessionStorage("prefs-".concat(window.flowID))) {
-                            _context.next = 6;
-                            break;
-                          }
+                // result.default.prototype.getTimestamp();
+                getStorage().then( /*#__PURE__*/function () {
+                  var _ref = __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.mark(function _callee(storage) {
+                    return __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            if (!storage.default.prototype.getSessionStorage("prefs-".concat(window.flowID))) {
+                              _context.next = 4;
+                              break;
+                            }
 
-                          _context.t0 = rerturn;
-                          _context.next = 4;
-                          return getSessionStorage("prefs-".concat(window.flowID));
+                            _context.next = 3;
+                            return storage.default.prototype.getSessionStorage("prefs-".concat(window.flowID));
 
-                        case 4:
-                          _context.t1 = _this.prefs = _context.sent;
-                          (0, _context.t0)(_context.t1);
+                          case 3:
+                            return _context.abrupt("return", _this.prefs = _context.sent);
 
-                        case 6:
-                        case "end":
-                          return _context.stop();
+                          case 4:
+                          case "end":
+                            return _context.stop();
+                        }
                       }
-                    }
-                  }, _callee);
-                })));
+                    }, _callee);
+                  }));
 
-              case 2:
-                // if (getStorage.then((storage) => storage.getSessionStorage(`prefs-${window.flowID}`))) return (this.prefs = await this.storage.getSessionStorage(`prefs-${window.flowID}`));
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
                 data = new __WEBPACK_IMPORTED_MODULE_5__js_util_data__["a" /* default */]("https://botup.${region}.500apps.com/botup/uiprefs");
-                _context2.next = 5;
+                _context2.next = 4;
                 return data.get();
 
-              case 5:
+              case 4:
                 response = _context2.sent;
                 // Check prefs is found in DB or not
                 response.ui_prefs ? this.setPrefs(response) : this.defaultPrefs(true);
 
-              case 7:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -30176,136 +30175,87 @@ var UIPrefs = /*#__PURE__*/function () {
 
   }, {
     key: "setPrefs",
-    value: function () {
-      var _setPrefs = __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.mark(function _callee3(response) {
-        var _this2 = this;
+    value: function setPrefs(response) {
+      var _this2 = this;
 
-        var DBPrefs;
-        return __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                DBPrefs = JSON.parse(response.ui_prefs);
-                this.prefs.widget = DBPrefs.widget;
-                this.prefs.chat_header.css.background = "".concat(DBPrefs.bgcolor, " !important");
-                this.prefs.chat_header.attr.gravatar = DBPrefs.pic_path;
-                this.prefs.chat_header.attr.bot_name = DBPrefs.name;
-                this.prefs.chat_header.attr.bot_description = DBPrefs.description;
-                this.prefs.chat_header.attr.bot_welcome_msg = DBPrefs.message;
-                this.prefs.chat.attr.transition = DBPrefs.transition;
-                DBPrefs.color ? this.prefs.chat_body.css.background = DBPrefs.color : this.prefs.chat_body.css.backgroundImage = "url(".concat(DBPrefs.bgImage, ")");
-                this.prefs.font_family.css.fontFamily = "".concat(DBPrefs.fontFamily, " !important");
-                this.prefs.chat_body.css.fontSize = "".concat(DBPrefs.fontSize, "px !important");
-                this.prefs.chat_width.css.width = "".concat(DBPrefs.width, "px !important");
-                this.prefs.chat_body.css.height = "max-height:".concat(DBPrefs.height, "px !important");
-                this.prefs.chat.sound.playMessageIn = "https://infinity.500apps.com".concat(DBPrefs.playMessageIn);
-                this.prefs.chat.sound.playMessageOut = "https://infinity.500apps.com".concat(DBPrefs.playMessageOut);
-                _context3.next = 17;
-                return getStorage().then(function () {
-                  return setSessionStorage("prefs-".concat(window.flowID), _this2.prefs);
-                });
-
-              case 17:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-
-      function setPrefs(_x) {
-        return _setPrefs.apply(this, arguments);
-      }
-
-      return setPrefs;
-    }() // Set default prefs
+      var DBPrefs = JSON.parse(response.ui_prefs);
+      this.prefs.widget = DBPrefs.widget;
+      this.prefs.chat_header.css.background = "".concat(DBPrefs.bgcolor, " !important");
+      this.prefs.chat_header.attr.gravatar = DBPrefs.pic_path;
+      this.prefs.chat_header.attr.bot_name = DBPrefs.name;
+      this.prefs.chat_header.attr.bot_description = DBPrefs.description;
+      this.prefs.chat_header.attr.bot_welcome_msg = DBPrefs.message;
+      this.prefs.chat.attr.transition = DBPrefs.transition;
+      DBPrefs.color ? this.prefs.chat_body.css.background = DBPrefs.color : this.prefs.chat_body.css.backgroundImage = "url(".concat(DBPrefs.bgImage, ")");
+      this.prefs.font_family.css.fontFamily = "".concat(DBPrefs.fontFamily, " !important");
+      this.prefs.chat_body.css.fontSize = "".concat(DBPrefs.fontSize, "px !important");
+      this.prefs.chat_width.css.width = "".concat(DBPrefs.width, "px !important");
+      this.prefs.chat_body.css.height = "max-height:".concat(DBPrefs.height, "px !important");
+      this.prefs.chat.sound.playMessageIn = "https://infinity.500apps.com".concat(DBPrefs.playMessageIn);
+      this.prefs.chat.sound.playMessageOut = "https://infinity.500apps.com".concat(DBPrefs.playMessageOut);
+      getStorage().then(function (storage) {
+        return storage.default.prototype.setSessionStorage("prefs-".concat(window.flowID), _this2.prefs);
+      });
+    } // Set default prefs
 
   }, {
     key: "defaultPrefs",
-    value: function () {
-      var _defaultPrefs = __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.mark(function _callee4(flag) {
-        var _this3 = this;
+    value: function defaultPrefs(flag) {
+      var _this3 = this;
 
-        return __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                this.prefs = {
-                  widget: "ultra",
-                  chat_icon: {
-                    attr: {
-                      active_image: "https://infinity.500apps.com/img/botup/cross.svg",
-                      chat_image: "https://infinity.500apps.com/img/botup/chatly.svg"
-                    }
-                  },
-                  chat_header: {
-                    css: {
-                      background: "linear-gradient(92deg, #4C00C9 0%, #1B17CF 100%)"
-                    },
-                    attr: {
-                      gravatar: "https://infinity.500apps.com/img/botup/bot.svg",
-                      welcome_img: "https://infinity.500apps.com/img/botup/hand.png",
-                      bot_name: "Bot by 500apps",
-                      bot_description: "Let's chat. We are here",
-                      bot_welcome_msg: "Hi! I am bot working for 500apps, I can help you with answering a few questions."
-                    }
-                  },
-                  chat: {
-                    attr: {
-                      transition: "botup-animation-fade-in-up"
-                    },
-                    sound: {
-                      playMessageIn: "https://infinity.500apps.com/img/botup/audios/botdefault.mp3",
-                      playMessageOut: "https://infinity.500apps.com/img/botup/audios/userdefault.mp3"
-                    }
-                  },
-                  chat_width: {
-                    css: {
-                      width: "360px !important"
-                    }
-                  },
-                  chat_body: {
-                    css: {
-                      fontSize: "14px !important",
-                      backgroundImage: "url(https://infinity.500apps.com/img/botup/chat-board-bg.png)",
-                      maxHeight: "300px !important"
-                    }
-                  },
-                  font_family: {
-                    css: {
-                      fontFamily: " 'Open Sans', sans-serif !important"
-                    },
-                    attr: {}
-                  }
-                };
-
-                if (flag) {
-                  _context4.next = 3;
-                  break;
-                }
-
-                return _context4.abrupt("return");
-
-              case 3:
-                _context4.next = 5;
-                return getStorage().then(function () {
-                  return setSessionStorage("prefs-".concat(window.flowID), _this3.prefs);
-                });
-
-              case 5:
-              case "end":
-                return _context4.stop();
-            }
+      this.prefs = {
+        widget: "ultra",
+        chat_icon: {
+          attr: {
+            active_image: "https://infinity.500apps.com/img/botup/cross.svg",
+            chat_image: "https://infinity.500apps.com/img/botup/chatly.svg"
           }
-        }, _callee4, this);
-      }));
-
-      function defaultPrefs(_x2) {
-        return _defaultPrefs.apply(this, arguments);
-      }
-
-      return defaultPrefs;
-    }()
+        },
+        chat_header: {
+          css: {
+            background: "linear-gradient(92deg, #4C00C9 0%, #1B17CF 100%)"
+          },
+          attr: {
+            gravatar: "https://infinity.500apps.com/img/botup/bot.svg",
+            welcome_img: "https://infinity.500apps.com/img/botup/hand.png",
+            bot_name: "Bot by 500apps",
+            bot_description: "Let's chat. We are here",
+            bot_welcome_msg: "Hi! I am bot working for 500apps, I can help you with answering a few questions."
+          }
+        },
+        chat: {
+          attr: {
+            transition: "botup-animation-fade-in-up"
+          },
+          sound: {
+            playMessageIn: "https://infinity.500apps.com/img/botup/audios/botdefault.mp3",
+            playMessageOut: "https://infinity.500apps.com/img/botup/audios/userdefault.mp3"
+          }
+        },
+        chat_width: {
+          css: {
+            width: "360px !important"
+          }
+        },
+        chat_body: {
+          css: {
+            fontSize: "14px !important",
+            backgroundImage: "url(https://infinity.500apps.com/img/botup/chat-board-bg.png)",
+            maxHeight: "300px !important"
+          }
+        },
+        font_family: {
+          css: {
+            fontFamily: " 'Open Sans', sans-serif !important"
+          },
+          attr: {}
+        }
+      };
+      if (!flag) return;
+      getStorage().then(function (storage) {
+        return storage.default.prototype.setSessionStorage("prefs-".concat(window.flowID), _this3.prefs);
+      });
+    }
     /**
      * Load CSS
      * @param {String} src Respective theme
