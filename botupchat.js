@@ -30490,8 +30490,7 @@ var UIPrefs = /*#__PURE__*/function () {
   function UIPrefs() {
     __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck___default()(this, UIPrefs);
 
-    this.storage = new __WEBPACK_IMPORTED_MODULE_4__js_util_storage__["a" /* default */](); // Set default prefs
-
+    // Set default prefs
     this.defaultPrefs();
   } // To get UI prefs based on project ID
 
@@ -30505,13 +30504,13 @@ var UIPrefs = /*#__PURE__*/function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!this.storage.getSessionStorage("prefs-".concat(window.flowID))) {
+                if (!Object(__WEBPACK_IMPORTED_MODULE_4__js_util_storage__["getSessionStorage"])("prefs-".concat(window.flowID))) {
                   _context.next = 4;
                   break;
                 }
 
                 _context.next = 3;
-                return this.storage.getSessionStorage("prefs-".concat(window.flowID));
+                return Object(__WEBPACK_IMPORTED_MODULE_4__js_util_storage__["getSessionStorage"])("prefs-".concat(window.flowID));
 
               case 3:
                 return _context.abrupt("return", this.prefs = _context.sent);
@@ -30563,7 +30562,7 @@ var UIPrefs = /*#__PURE__*/function () {
       this.prefs.chat_body.css.height = "max-height:".concat(DBPrefs.height, "px !important");
       this.prefs.chat.sound.playMessageIn = "https://infinity.500apps.com".concat(DBPrefs.playMessageIn);
       this.prefs.chat.sound.playMessageOut = "https://infinity.500apps.com".concat(DBPrefs.playMessageOut);
-      this.storage.setSessionStorage("prefs-".concat(window.flowID), this.prefs);
+      Object(__WEBPACK_IMPORTED_MODULE_4__js_util_storage__["setSessionStorage"])("prefs-".concat(window.flowID), this.prefs);
     } // Set default prefs
 
   }, {
@@ -30618,7 +30617,7 @@ var UIPrefs = /*#__PURE__*/function () {
         }
       };
       if (!flag) return;
-      this.storage.setSessionStorage("prefs-".concat(window.flowID), this.prefs);
+      Object(__WEBPACK_IMPORTED_MODULE_4__js_util_storage__["setSessionStorage"])("prefs-".concat(window.flowID), this.prefs);
     }
     /**
      * Load CSS
