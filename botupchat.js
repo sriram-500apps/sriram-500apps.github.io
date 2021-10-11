@@ -192,7 +192,7 @@ function normalizeObjectUnits(inputObject) {
 /* harmony export (immutable) */ __webpack_exports__["c"] = formatMoment;
 /* harmony export (immutable) */ __webpack_exports__["b"] = expandFormat;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_zero_fill__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_is_function__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_is_function__ = __webpack_require__(20);
 
 
 var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|N{1,5}|YYYYYY|YYYYY|YYYY|YY|y{2,4}|yo?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g,
@@ -366,7 +366,7 @@ function hasOwnProp(a, b) {
 /* harmony export (immutable) */ __webpack_exports__["b"] = getParseRegexForToken;
 /* harmony export (immutable) */ __webpack_exports__["t"] = regexEscape;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_has_own_prop__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_is_function__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_is_function__ = __webpack_require__(20);
 var match1 = /\d/,
     //       0 - 9
 match2 = /\d\d/,
@@ -1303,8 +1303,8 @@ function createLocal(input, format, locale, strict) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__units_aliases__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__units_priorities__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_hooks__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_is_function__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__units_month__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_is_function__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__units_month__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_is_leap_year__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_to_int__ = __webpack_require__(2);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1521,138 +1521,6 @@ function momentsDifference(base, other) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass__);
-
-
-
-
-var Storage = /*#__PURE__*/function () {
-  function Storage() {
-    __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck___default()(this, Storage);
-
-    this.arrayOfJson = [];
-  }
-  /**
-   * Set session
-   */
-
-
-  __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass___default()(Storage, [{
-    key: "setSessionStorage",
-    value: function setSessionStorage(key, value) {
-      var expireTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      var storage = {
-        expireTime: expireTime ? expireTime + this.getTimestamp() : null,
-        value: value
-      };
-      return sessionStorage.setItem(key, JSON.stringify(storage));
-    }
-    /**
-     * Get session
-     */
-
-  }, {
-    key: "getSessionStorage",
-    value: function getSessionStorage(key) {
-      var storage = JSON.parse(sessionStorage.getItem(key));
-
-      if (!(storage && storage.expireTime)) {
-        return storage ? storage.value : null;
-      }
-
-      return this.isExpired(storage.expireTime) ? this.removeItem(key, true) : storage.value;
-    }
-    /**
-     * Set session
-     */
-
-  }, {
-    key: "setLocalStorage",
-    value: function setLocalStorage(key, value, expireTime) {
-      var storage = {
-        expireTime: expireTime ? expireTime + this.getTimestamp() : null,
-        value: value
-      };
-      return localStorage.setItem(key, JSON.stringify(storage));
-    }
-    /**
-     * Get session
-     */
-
-  }, {
-    key: "getLocalStorage",
-    value: function getLocalStorage(key) {
-      var storage = JSON.parse(localStorage.getItem(key));
-
-      if (!(storage && storage.expireTime)) {
-        return storage ? storage.value : null;
-      }
-
-      return this.isExpired(storage.expireTime) ? this.removeItem(key, false) : storage.value;
-    }
-    /**
-     * Get current timestamp in seconds.
-     */
-
-  }, {
-    key: "getTimestamp",
-    value: function getTimestamp() {
-      return Math.floor(new Date().getTime() / 1000);
-    }
-    /**
-     * Return if an item is expired
-     * @param {Number} expireTime
-     */
-
-  }, {
-    key: "isExpired",
-    value: function isExpired(expireTime) {
-      if (!expireTime) return false;
-      var timeLeft = expireTime - this.getTimestamp(); // return if expired
-
-      return timeLeft <= 0;
-    }
-    /**
-     * Remove an item
-     * @param {String} key
-     * @param {String} is_session
-     */
-
-  }, {
-    key: "removeItem",
-    value: function removeItem(key) {
-      var is_session = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      return is_session ? sessionStorage.removeItem(key) : localStorage.removeItem(key);
-    }
-  }, {
-    key: "appendKey",
-    value: function appendKey(key, value) {
-      // Merge all
-      return Object.assign(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, key, value));
-    }
-  }, {
-    key: "appendArray",
-    value: function appendArray(key, value) {
-      return this.arrayOfJson.push(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, key, value));
-    }
-  }]);
-
-  return Storage;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (Storage);
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = deprecate;
 /* harmony export (immutable) */ __webpack_exports__["b"] = deprecateSimple;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__extend__ = __webpack_require__(33);
@@ -1725,7 +1593,7 @@ __WEBPACK_IMPORTED_MODULE_1__hooks__["a" /* hooks */].suppressDeprecationWarning
 __WEBPACK_IMPORTED_MODULE_1__hooks__["a" /* hooks */].deprecationHandler = null;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1735,7 +1603,7 @@ function isFunction(input) {
 }
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2061,6 +1929,138 @@ function computeMonthsParse() {
 }
 
 /***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass__);
+
+
+
+
+var Storage = /*#__PURE__*/function () {
+  function Storage() {
+    __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_classCallCheck___default()(this, Storage);
+
+    this.arrayOfJson = [];
+  }
+  /**
+   * Set session
+   */
+
+
+  __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass___default()(Storage, [{
+    key: "setSessionStorage",
+    value: function setSessionStorage(key, value) {
+      var expireTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var storage = {
+        expireTime: expireTime ? expireTime + this.getTimestamp() : null,
+        value: value
+      };
+      return sessionStorage.setItem(key, JSON.stringify(storage));
+    }
+    /**
+     * Get session
+     */
+
+  }, {
+    key: "getSessionStorage",
+    value: function getSessionStorage(key) {
+      var storage = JSON.parse(sessionStorage.getItem(key));
+
+      if (!(storage && storage.expireTime)) {
+        return storage ? storage.value : null;
+      }
+
+      return this.isExpired(storage.expireTime) ? this.removeItem(key, true) : storage.value;
+    }
+    /**
+     * Set session
+     */
+
+  }, {
+    key: "setLocalStorage",
+    value: function setLocalStorage(key, value, expireTime) {
+      var storage = {
+        expireTime: expireTime ? expireTime + this.getTimestamp() : null,
+        value: value
+      };
+      return localStorage.setItem(key, JSON.stringify(storage));
+    }
+    /**
+     * Get session
+     */
+
+  }, {
+    key: "getLocalStorage",
+    value: function getLocalStorage(key) {
+      var storage = JSON.parse(localStorage.getItem(key));
+
+      if (!(storage && storage.expireTime)) {
+        return storage ? storage.value : null;
+      }
+
+      return this.isExpired(storage.expireTime) ? this.removeItem(key, false) : storage.value;
+    }
+    /**
+     * Get current timestamp in seconds.
+     */
+
+  }, {
+    key: "getTimestamp",
+    value: function getTimestamp() {
+      return Math.floor(new Date().getTime() / 1000);
+    }
+    /**
+     * Return if an item is expired
+     * @param {Number} expireTime
+     */
+
+  }, {
+    key: "isExpired",
+    value: function isExpired(expireTime) {
+      if (!expireTime) return false;
+      var timeLeft = expireTime - this.getTimestamp(); // return if expired
+
+      return timeLeft <= 0;
+    }
+    /**
+     * Remove an item
+     * @param {String} key
+     * @param {String} is_session
+     */
+
+  }, {
+    key: "removeItem",
+    value: function removeItem(key) {
+      var is_session = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      return is_session ? sessionStorage.removeItem(key) : localStorage.removeItem(key);
+    }
+  }, {
+    key: "appendKey",
+    value: function appendKey(key, value) {
+      // Merge all
+      return Object.assign(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, key, value));
+    }
+  }, {
+    key: "appendArray",
+    value: function appendArray(key, value) {
+      return this.arrayOfJson.push(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, key, value));
+    }
+  }]);
+
+  return Storage;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Storage);
+
+/***/ }),
 /* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2072,7 +2072,7 @@ function computeMonthsParse() {
 /* harmony export (immutable) */ __webpack_exports__["d"] = listLocales;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_is_array__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_is_undefined__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_deprecate__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_deprecate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__set__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constructor__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_keys__ = __webpack_require__(167);
@@ -14472,7 +14472,7 @@ module.exports = Cancel;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_classCallCheck__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_createClass__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage__ = __webpack_require__(22);
 
 
 
@@ -14732,7 +14732,7 @@ var Session = /*#__PURE__*/function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__babel_runtime_regenerator__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_data__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_storage__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__chat_conversations__ = __webpack_require__(71);
 
 
@@ -14851,7 +14851,7 @@ var Store = /*#__PURE__*/function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_classCallCheck__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_createClass__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_storage__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_state__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_state_session__ = __webpack_require__(69);
 
@@ -15353,7 +15353,7 @@ function map(arr, fn) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = set;
 /* harmony export (immutable) */ __webpack_exports__["a"] = mergeConfigs;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_is_function__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_is_function__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_extend__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_is_object__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_has_own_prop__ = __webpack_require__(4);
@@ -15429,7 +15429,7 @@ function Locale(config) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return defaultCalendar; });
 /* harmony export (immutable) */ __webpack_exports__["a"] = calendar;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_is_function__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_is_function__ = __webpack_require__(20);
 var defaultCalendar = {
   sameDay: '[Today at] LT',
   nextDay: '[Tomorrow at] LT',
@@ -15514,7 +15514,7 @@ function ordinal(number) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return defaultRelativeTime; });
 /* harmony export (immutable) */ __webpack_exports__["c"] = relativeTime;
 /* harmony export (immutable) */ __webpack_exports__["b"] = pastFuture;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_is_function__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_is_function__ = __webpack_require__(20);
 var defaultRelativeTime = {
   future: 'in %s',
   past: '%s ago',
@@ -15549,7 +15549,7 @@ function pastFuture(diff, output) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = checkOverflow;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__units_month__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__units_month__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__units_constants__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_parsing_flags__ = __webpack_require__(11);
 
@@ -15591,9 +15591,9 @@ function checkOverflow(m) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__from_string_and_format__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__date_from_array__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_hooks__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_deprecate__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_deprecate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parsing_flags__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__units_month__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__units_month__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__units_day_of_week__ = __webpack_require__(35);
 
 
@@ -15813,7 +15813,7 @@ __WEBPACK_IMPORTED_MODULE_2__utils_hooks__["a" /* hooks */].createFromInputFallb
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return prototypeMax; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = min;
 /* harmony export (immutable) */ __webpack_exports__["a"] = max;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_deprecate__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_deprecate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_is_array__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__create_local__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__create_valid__ = __webpack_require__(26);
@@ -15885,9 +15885,9 @@ function max() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return add; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return subtract; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__get_set__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__units_month__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__units_month__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__duration_create__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_deprecate__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_deprecate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_hooks__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_abs_round__ = __webpack_require__(90);
 
@@ -15968,7 +15968,7 @@ function absRound(number) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = calendar;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__create_local__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__units_offset__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_is_function__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_is_function__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_hooks__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_is_moment_input__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_is_calendar_spec__ = __webpack_require__(178);
@@ -16015,7 +16015,7 @@ function calendar(time, formats) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return lang; });
 /* harmony export (immutable) */ __webpack_exports__["c"] = localeData;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__locale_locales__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_deprecate__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_deprecate__ = __webpack_require__(19);
 
  // If passed a locale key, it will set the locale for this
 // instance.  Otherwise, it will return the locale configuration
@@ -16752,7 +16752,7 @@ function getZoneName() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__relative__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__set__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__units_era__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__units_month__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__units_month__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__units_week__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__units_day_of_week__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__units_hour__ = __webpack_require__(45);
@@ -20475,7 +20475,7 @@ module.exports = function (module) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__state_session__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__storage__ = __webpack_require__(22);
 
 
 
@@ -21401,10 +21401,8 @@ module.exports = function isAxiosError(payload) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_data__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__core_state__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__store__ = __webpack_require__(70);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__core_state__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__store__ = __webpack_require__(70);
 
 
 
@@ -21417,45 +21415,53 @@ module.exports = function isAxiosError(payload) {
 
 var Handlebars = __webpack_require__(141);
 
+var getStorage = function getStorage() {
+  return new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 22));
+};
+
 var Bot = /*#__PURE__*/function () {
   function Bot() {
+    var _this = this;
+
     __WEBPACK_IMPORTED_MODULE_3__babel_runtime_helpers_classCallCheck___default()(this, Bot);
 
     this.selectedMCQ = [];
-    this.storage = new __WEBPACK_IMPORTED_MODULE_7__util_storage__["default"]();
-    this.store = new __WEBPACK_IMPORTED_MODULE_9__store__["a" /* default */]();
+    this.store = new __WEBPACK_IMPORTED_MODULE_8__store__["a" /* default */]();
     var currentPage = window.location.href;
-    var lastURL = this.storage.getSessionStorage("lastURL"); // New page loaded
+    getStorage().then(function (storage) {
+      var lastURL = storage.default.prototype.getSessionStorage("lastURL"); // New page loaded
 
-    if (lastURL == null || currentPage !== lastURL) return this.storage.setSessionStorage("lastURL", currentPage); // we need to set up flag for execute next step when refreshed page
+      if (lastURL == null || currentPage !== lastURL) return storage.default.prototype.setSessionStorage("lastURL", currentPage); // we need to set up flag for execute next step when refreshed page
 
-    this.refreshFlag = false;
+      _this.refreshFlag = false;
+    });
   } // Receive message from vuex
 
 
   __WEBPACK_IMPORTED_MODULE_4__babel_runtime_helpers_createClass___default()(Bot, [{
     key: "receiveMessage",
     value: function receiveMessage() {
-      var _this = this;
+      var _this2 = this;
 
       this.stateJSON = null;
       this.refreshFlag = false;
-
-      if (this.storage.getSessionStorage("chat") == "Inactive") {
-        this.storage.setSessionStorage("chat", "Active");
-        return new Promise(function (resolve, reject) {
-          __WEBPACK_IMPORTED_MODULE_8__core_state__["a" /* default */].watch(function (state) {
-            state.activeMessage, _this.stateJSON = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(state.activeMessage) == "object" ? null : state.activeMessage;
-            resolve(state.activeMessage);
+      getStorage().then(function (storage) {
+        if (storage.default.prototype.getSessionStorage("chat") == "Inactive") {
+          storage.default.prototype.setSessionStorage("chat", "Active");
+          return new Promise(function (resolve, reject) {
+            __WEBPACK_IMPORTED_MODULE_7__core_state__["a" /* default */].watch(function (state) {
+              state.activeMessage, _this2.stateJSON = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(state.activeMessage) == "object" ? null : state.activeMessage;
+              resolve(state.activeMessage);
+            });
           });
-        });
-      } else return new Promise(function (resolve, reject) {
-        __WEBPACK_IMPORTED_MODULE_8__core_state__["a" /* default */].watch(function (state) {
-          return state.activeMessage;
-        }, function (oldValue) {
-          // If MCQ then null value should be assigned else direct message then watcher value should be assigned to variable
-          _this.stateJSON = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(oldValue) == "object" ? null : oldValue;
-          resolve(oldValue);
+        } else return new Promise(function (resolve, reject) {
+          __WEBPACK_IMPORTED_MODULE_7__core_state__["a" /* default */].watch(function (state) {
+            return state.activeMessage;
+          }, function (oldValue) {
+            // If MCQ then null value should be assigned else direct message then watcher value should be assigned to variable
+            _this2.stateJSON = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(oldValue) == "object" ? null : oldValue;
+            resolve(oldValue);
+          });
         });
       });
     } // Validate email
@@ -21482,7 +21488,7 @@ var Bot = /*#__PURE__*/function () {
   }, {
     key: "saveInState",
     value: function saveInState(mutation, payload) {
-      __WEBPACK_IMPORTED_MODULE_8__core_state__["a" /* default */].commit(mutation, payload);
+      __WEBPACK_IMPORTED_MODULE_7__core_state__["a" /* default */].commit(mutation, payload);
     }
     /**
      * To get flows
@@ -21492,37 +21498,56 @@ var Bot = /*#__PURE__*/function () {
   }, {
     key: "getBot",
     value: function () {
-      var _getBot = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee(flowID) {
-        var data, response;
-        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+      var _getBot = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee2(flowID) {
+        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                if (!this.storage.getSessionStorage("flowID-".concat(flowID))) {
-                  _context.next = 2;
-                  break;
-                }
+                getStorage().then( /*#__PURE__*/function () {
+                  var _ref = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee(storage) {
+                    var data, response;
+                    return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            if (!storage.default.prototype.getSessionStorage("flowID-".concat(flowID))) {
+                              _context.next = 2;
+                              break;
+                            }
 
-                return _context.abrupt("return", this.storage.getSessionStorage("flowID-".concat(flowID)));
+                            return _context.abrupt("return", storage.default.prototype.getSessionStorage("flowID-".concat(flowID)));
 
-              case 2:
-                data = new __WEBPACK_IMPORTED_MODULE_6__util_data__["a" /* default */]("https://botup.${region}.500apps.com/botup/flows/" + flowID);
-                _context.next = 5;
-                return data.get();
+                          case 2:
+                            data = new __WEBPACK_IMPORTED_MODULE_6__util_data__["a" /* default */]("https://botup.${region}.500apps.com/botup/flows/" + flowID);
+                            _context.next = 5;
+                            return data.get();
 
-              case 5:
-                response = _context.sent;
-                // To set project id in local storage
-                this.storage.setLocalStorage("projectID-".concat(flowID), response.project_id);
-                this.storage.setSessionStorage("flowID-".concat(flowID), JSON.parse(response.workflow));
-                return _context.abrupt("return", JSON.parse(response.workflow));
+                          case 5:
+                            response = _context.sent;
+                            // To set project id in local storage
+                            storage.default.prototype.setLocalStorage("projectID-".concat(flowID), response.project_id);
+                            storage.default.prototype.setSessionStorage("flowID-".concat(flowID), JSON.parse(response.workflow));
+                            return _context.abrupt("return", JSON.parse(response.workflow));
 
-              case 9:
+                          case 9:
+                          case "end":
+                            return _context.stop();
+                        }
+                      }
+                    }, _callee);
+                  }));
+
+                  return function (_x2) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+
+              case 1:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2);
       }));
 
       function getBot(_x) {
@@ -21541,11 +21566,11 @@ var Bot = /*#__PURE__*/function () {
   }, {
     key: "executeFlow",
     value: function () {
-      var _executeFlow = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee2(stepId, botJson, stateJSON) {
+      var _executeFlow = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee4(stepId, botJson, stateJSON) {
         var type, startStep;
-        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 // To get key when visitor triggers MCQ Questions
                 this.stateJSON = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(stateJSON) == "object" ? Object.keys(stateJSON)[0] : stateJSON; // Format valid JSON
@@ -21553,19 +21578,36 @@ var Bot = /*#__PURE__*/function () {
                 this.json = this.transformJSON(botJson);
                 this.saveInState("setExecJson", this.json); // Read step from local storage if this is executing again
 
-                if (stepId) {
-                  _context2.next = 7;
-                  break;
-                }
+                getStorage().then( /*#__PURE__*/function () {
+                  var _ref2 = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee3(storage) {
+                    return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                      while (1) {
+                        switch (_context3.prev = _context3.next) {
+                          case 0:
+                            if (stepId) {
+                              _context3.next = 4;
+                              break;
+                            }
 
-                _context2.next = 6;
-                return this.storage.getLocalStorage("botup-".concat(window.flowID));
+                            _context3.next = 3;
+                            return storage.default.prototype.getLocalStorage("botup-".concat(window.flowID));
 
-              case 6:
-                stepId = _context2.sent;
+                          case 3:
+                            stepId = _context3.sent;
 
-              case 7:
-                // To check node type
+                          case 4:
+                          case "end":
+                            return _context3.stop();
+                        }
+                      }
+                    }, _callee3);
+                  }));
+
+                  return function (_x6) {
+                    return _ref2.apply(this, arguments);
+                  };
+                }()); // To check node type
+
                 stepId = stepId ? stepId : "start";
                 type = stepId == "start" ? "type" : "id"; // Find out active step JSON
 
@@ -21575,15 +21617,15 @@ var Bot = /*#__PURE__*/function () {
 
                 !this.refreshFlag ? this.exec(startStep.next) : this.execEachStep(startStep);
 
-              case 11:
+              case 8:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee4, this);
       }));
 
-      function executeFlow(_x2, _x3, _x4) {
+      function executeFlow(_x3, _x4, _x5) {
         return _executeFlow.apply(this, arguments);
       }
 
@@ -21620,28 +21662,28 @@ var Bot = /*#__PURE__*/function () {
   }, {
     key: "execEachStep",
     value: function () {
-      var _execEachStep = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee3(step) {
-        var _this2 = this;
+      var _execEachStep = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee5(step) {
+        var _this3 = this;
 
-        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 // Execute
                 this.execStep(step).then(function (value) {
                   // Next step id
-                  _this2.exec(value ? typeof value == "string" ? step.next : Object.values(value)[0] : step.next);
+                  _this3.exec(value ? typeof value == "string" ? step.next : Object.values(value)[0] : step.next);
                 });
 
               case 1:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee5, this);
       }));
 
-      function execEachStep(_x5) {
+      function execEachStep(_x7) {
         return _execEachStep.apply(this, arguments);
       }
 
@@ -21655,241 +21697,264 @@ var Bot = /*#__PURE__*/function () {
   }, {
     key: "execStep",
     value: function () {
-      var _execStep = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee4(step) {
+      var _execStep = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee7(step) {
         var response;
-        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
                 if (!this.refreshFlag) {
-                  _context4.next = 4;
+                  _context7.next = 4;
                   break;
                 }
 
-                _context4.next = 3;
+                _context7.next = 3;
                 return this.receiveMessage();
 
               case 3:
-                return _context4.abrupt("return", response = _context4.sent);
+                return _context7.abrupt("return", response = _context7.sent);
 
               case 4:
-                _context4.next = 6;
-                return this.storage.setLocalStorage("botup-".concat(window.flowID), step.id);
+                // Store the current step
+                getStorage().then( /*#__PURE__*/function () {
+                  var _ref3 = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee6(storage) {
+                    return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                      while (1) {
+                        switch (_context6.prev = _context6.next) {
+                          case 0:
+                            _context6.next = 2;
+                            return storage.default.prototype.setLocalStorage("botup-".concat(window.flowID), step.id);
 
-              case 6:
-                _context4.t0 = step.type;
-                _context4.next = _context4.t0 === "Message" ? 9 : _context4.t0 === "Varied Responses" ? 12 : _context4.t0 === "Get Phone Number" ? 26 : _context4.t0 === "Get Email" ? 33 : _context4.t0 === "Get Name" ? 48 : _context4.t0 === "Image With MCQ" ? 55 : _context4.t0 === "Redirect URL" ? 69 : _context4.t0 === "Video" ? 71 : _context4.t0 === "delay" ? 73 : _context4.t0 === "Get Input" ? 77 : _context4.t0 === "rest-dynamic-step-v2" ? 83 : _context4.t0 === "JS code" ? 85 : _context4.t0 === "hangup" ? 87 : 94;
+                          case 2:
+                            return _context6.abrupt("return", _context6.sent);
+
+                          case 3:
+                          case "end":
+                            return _context6.stop();
+                        }
+                      }
+                    }, _callee6);
+                  }));
+
+                  return function (_x9) {
+                    return _ref3.apply(this, arguments);
+                  };
+                }());
+                _context7.t0 = step.type;
+                _context7.next = _context7.t0 === "Message" ? 8 : _context7.t0 === "Varied Responses" ? 11 : _context7.t0 === "Get Phone Number" ? 25 : _context7.t0 === "Get Email" ? 32 : _context7.t0 === "Get Name" ? 47 : _context7.t0 === "Image With MCQ" ? 54 : _context7.t0 === "Redirect URL" ? 68 : _context7.t0 === "Video" ? 70 : _context7.t0 === "delay" ? 72 : _context7.t0 === "Get Input" ? 76 : _context7.t0 === "rest-dynamic-step-v2" ? 82 : _context7.t0 === "JS code" ? 84 : _context7.t0 === "hangup" ? 86 : 93;
                 break;
 
-              case 9:
+              case 8:
                 response = window._Botup.Chat.sendMessage(step.type, step.message, this.stateJSON);
                 this.stateJSON = null;
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 12:
+              case 11:
                 window._Botup.Chat.sendVariedMessage(step.type, step, this.stateJSON);
 
-              case 13:
+              case 12:
                 if (false) {
-                  _context4.next = 25;
+                  _context7.next = 24;
                   break;
                 }
 
-                _context4.next = 16;
+                _context7.next = 15;
                 return this.receiveMessage();
 
-              case 16:
-                response = _context4.sent;
+              case 15:
+                response = _context7.sent;
 
                 if (!this.validateMCQCases(step.state, response)) {
-                  _context4.next = 22;
+                  _context7.next = 21;
                   break;
                 }
 
                 // Visitor send message directly without trigger MCQ option
                 response = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(response) == "object" ? response : this.selectedMCQ[0];
-                return _context4.abrupt("break", 25);
+                return _context7.abrupt("break", 24);
 
-              case 22:
+              case 21:
                 window._Botup.Chat.sendVariedMessage(step.type, step, response);
 
-              case 23:
-                _context4.next = 13;
+              case 22:
+                _context7.next = 12;
                 break;
 
-              case 25:
-                return _context4.abrupt("break", 95);
+              case 24:
+                return _context7.abrupt("break", 94);
 
-              case 26:
+              case 25:
                 window._Botup.Chat.sendPhoneNumber(step.type, step, this.stateJSON); // Wait for response
 
 
-                _context4.next = 29;
+                _context7.next = 28;
                 return this.receiveMessage();
 
-              case 29:
-                response = _context4.sent;
+              case 28:
+                response = _context7.sent;
                 // Create object with step output from designer JSON & save data in state
                 this.saveInState("setPhoneNumber", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response)); // Save into state JSON
 
                 this.saveInState("setStateJSON", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response));
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 33:
+              case 32:
                 window._Botup.Chat.sendEmail(step.type, step, this.stateJSON);
 
-              case 34:
+              case 33:
                 if (false) {
-                  _context4.next = 45;
+                  _context7.next = 44;
                   break;
                 }
 
-                _context4.next = 37;
+                _context7.next = 36;
                 return this.receiveMessage();
 
-              case 37:
-                response = _context4.sent;
+              case 36:
+                response = _context7.sent;
 
                 if (!this.validateEmail(response)) {
-                  _context4.next = 42;
+                  _context7.next = 41;
                   break;
                 }
 
-                return _context4.abrupt("break", 45);
+                return _context7.abrupt("break", 44);
 
-              case 42:
+              case 41:
                 window._Botup.Chat.sendMessage("", "Enter a valid email", response);
 
-              case 43:
-                _context4.next = 34;
+              case 42:
+                _context7.next = 33;
                 break;
 
-              case 45:
+              case 44:
                 // Create object with step output from designer JSON & save data in state
                 this.saveInState("setEmail", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response)); // Save into state JSON
 
                 this.saveInState("setStateJSON", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response));
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 48:
+              case 47:
                 window._Botup.Chat.sendName(step.type, step, this.stateJSON);
 
-                _context4.next = 51;
+                _context7.next = 50;
                 return this.receiveMessage();
 
-              case 51:
-                response = _context4.sent;
+              case 50:
+                response = _context7.sent;
                 // Create object with step output from designer JSON & save data in state
                 this.saveInState("setName", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response)); // Save into state JSON
 
                 this.saveInState("setStateJSON", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response));
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 55:
+              case 54:
                 window._Botup.Chat.sendImageWithMCQ(step.type, step, this.stateJSON);
 
-              case 56:
+              case 55:
                 if (false) {
-                  _context4.next = 68;
+                  _context7.next = 67;
                   break;
                 }
 
-                _context4.next = 59;
+                _context7.next = 58;
                 return this.receiveMessage();
 
-              case 59:
-                response = _context4.sent;
+              case 58:
+                response = _context7.sent;
 
                 if (!this.validateMCQCases(step.state, response)) {
-                  _context4.next = 65;
+                  _context7.next = 64;
                   break;
                 }
 
                 // Visitor send message directly without trigger MCQ option
                 response = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(response) == "object" ? response : this.selectedMCQ[0];
-                return _context4.abrupt("break", 68);
+                return _context7.abrupt("break", 67);
 
-              case 65:
+              case 64:
                 window._Botup.Chat.sendImageWithMCQ(step.type, step, response);
 
-              case 66:
-                _context4.next = 56;
+              case 65:
+                _context7.next = 55;
                 break;
 
+              case 67:
+                return _context7.abrupt("break", 94);
+
               case 68:
-                return _context4.abrupt("break", 95);
-
-              case 69:
                 response = window._Botup.Chat.sendRedirectURL(step.type, step, null);
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 71:
+              case 70:
                 response = window._Botup.Chat.sendVideo(step.type, step, null);
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 73:
-                _context4.next = 75;
+              case 72:
+                _context7.next = 74;
                 return window._Botup.Chat.waitSendMessage(step.type, step, null);
 
-              case 75:
-                response = _context4.sent;
-                return _context4.abrupt("break", 95);
+              case 74:
+                response = _context7.sent;
+                return _context7.abrupt("break", 94);
 
-              case 77:
+              case 76:
                 window._Botup.Chat.sendInput(step.type, step, this.stateJSON);
 
-                _context4.next = 80;
+                _context7.next = 79;
                 return this.receiveMessage();
 
-              case 80:
-                response = _context4.sent;
+              case 79:
+                response = _context7.sent;
                 // Create object with step output from designer JSON & save data in state
                 this.saveInState("setStateJSON", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response));
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 83:
+              case 82:
                 response = window._Botup.Chat.sendRest(step.type, step, null);
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 85:
+              case 84:
                 response = this.execJSCode(step.code, window._Botup.State.getters.getStateJSON);
-                return _context4.abrupt("break", 95);
+                return _context7.abrupt("break", 94);
 
-              case 87:
+              case 86:
                 if (window._Botup.State.getters.getGeneratedKey) {
-                  _context4.next = 90;
+                  _context7.next = 89;
                   break;
                 }
 
-                _context4.next = 90;
+                _context7.next = 89;
                 return this.store.contactInfo();
 
-              case 90:
+              case 89:
                 // To store conversation in state
                 this.store.conversationHistory(); // Send bot has end the chat
 
                 window._Botup.Chat.sendMessage("", "Thanks for using our bot. If you like this experience, get one of your own for your website at Botup.com by 500apps.", this.stateJSON);
 
-                this.storage.setLocalStorage("botup-".concat(window.flowID), undefined);
-                return _context4.abrupt("break", 95);
+                getStorage().them(function (storage) {
+                  return storage.default.prototype.setLocalStorage("botup-".concat(window.flowID), undefined);
+                });
+                return _context7.abrupt("break", 94);
 
-              case 94:
-                return _context4.abrupt("return", new Promise(function (resolve, reject) {
+              case 93:
+                return _context7.abrupt("return", new Promise(function (resolve, reject) {
                   resolve();
                 }));
 
-              case 95:
-                return _context4.abrupt("return", response);
+              case 94:
+                return _context7.abrupt("return", response);
 
-              case 96:
+              case 95:
               case "end":
-                return _context4.stop();
+                return _context7.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee7, this);
       }));
 
-      function execStep(_x6) {
+      function execStep(_x8) {
         return _execStep.apply(this, arguments);
       }
 
@@ -21962,12 +22027,12 @@ var Bot = /*#__PURE__*/function () {
   }, {
     key: "compileToHB",
     value: function compileToHB(source, stateJSON, value, index, keyValue) {
-      var _this3 = this;
+      var _this4 = this;
 
       var template = Handlebars.compile(value);
       var data = {};
       stateJSON.forEach(function (item) {
-        item = _this3.formatObject(item);
+        item = _this4.formatObject(item);
         data[Object.keys(item)] = item[Object.keys(item)];
       });
       value = template(data); // We will compile again as the key may also be handlebars
@@ -28045,7 +28110,7 @@ module.exports = exports['default'];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversations__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_state__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment_src_moment__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_storage__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_storage__ = __webpack_require__(22);
 
 
 
@@ -28427,7 +28492,7 @@ if (Object.keys) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__invalid__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ordinal__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__relative__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__units_month__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__units_month__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__units_week__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__units_day_of_week__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__units_hour__ = __webpack_require__(45);
@@ -28623,7 +28688,7 @@ var now = function now() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__units_year__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__units_week_year__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__units_quarter__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__units_month__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__units_month__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__units_week__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__units_day_of_month__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__units_day_of_week__ = __webpack_require__(35);
@@ -28634,7 +28699,7 @@ var now = function now() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__units_millisecond__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__units_offset__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__units_timezone__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__utils_deprecate__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__utils_deprecate__ = __webpack_require__(19);
 
 var proto = __WEBPACK_IMPORTED_MODULE_0__constructor__["a" /* Moment */].prototype;
 
@@ -29094,7 +29159,7 @@ function monthDiff(a, b) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = format;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__format_format__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_hooks__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_is_function__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_is_function__ = __webpack_require__(20);
 
 
 
@@ -29473,7 +29538,7 @@ function creationData() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__lists__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_2__lists__["e"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_2__lists__["d"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_deprecate__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_deprecate__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_hooks__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__en__ = __webpack_require__(192);
 // Side effect imports
@@ -29674,7 +29739,7 @@ Object(__WEBPACK_IMPORTED_MODULE_1__locales__["c" /* getSetGlobalLocale */])('en
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__iso_string__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__moment_locale__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__valid__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_deprecate__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__utils_deprecate__ = __webpack_require__(19);
 
 var proto = __WEBPACK_IMPORTED_MODULE_0__constructor__["a" /* Duration */].prototype;
 
@@ -30013,7 +30078,7 @@ function toISOString() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__hour__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__millisecond__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__minute__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__month__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__month__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__offset__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__quarter__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__second__ = __webpack_require__(99);
@@ -30082,9 +30147,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__parse_token__["a" /* addParseToken */])('x',
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_createClass__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_util_storage__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_util_data__ = __webpack_require__(37);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_util_data__ = __webpack_require__(37);
 
 
 
@@ -30092,7 +30155,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__parse_token__["a" /* addParseToken */])('x',
 
 
 var getStorage = function getStorage() {
-  return new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 19));
+  return new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, 22));
 };
 
 var UIPrefs = /*#__PURE__*/function () {
@@ -30145,7 +30208,7 @@ var UIPrefs = /*#__PURE__*/function () {
                     return _ref.apply(this, arguments);
                   };
                 }());
-                data = new __WEBPACK_IMPORTED_MODULE_5__js_util_data__["a" /* default */]("https://botup.${region}.500apps.com/botup/uiprefs");
+                data = new __WEBPACK_IMPORTED_MODULE_4__js_util_data__["a" /* default */]("https://botup.${region}.500apps.com/botup/uiprefs");
                 _context2.next = 4;
                 return data.get();
 
