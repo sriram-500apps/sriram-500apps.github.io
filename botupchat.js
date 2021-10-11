@@ -30117,7 +30117,7 @@ var UIPrefs = /*#__PURE__*/function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                getStorage.then( /*#__PURE__*/function () {
+                getStorage().then( /*#__PURE__*/function () {
                   var _ref = __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.mark(function _callee(storage) {
                     return __WEBPACK_IMPORTED_MODULE_3__babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                       while (1) {
