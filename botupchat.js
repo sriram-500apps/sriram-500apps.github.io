@@ -21630,134 +21630,111 @@ var Bot = /*#__PURE__*/function () {
   }, {
     key: "execStep",
     value: function () {
-      var _execStep = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee5(step) {
+      var _execStep = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee4(step) {
         var response;
-        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+        return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 if (!this.refreshFlag) {
-                  _context5.next = 4;
+                  _context4.next = 4;
                   break;
                 }
 
-                _context5.next = 3;
+                _context4.next = 3;
                 return this.receiveMessage();
 
               case 3:
-                return _context5.abrupt("return", response = _context5.sent);
+                return _context4.abrupt("return", response = _context4.sent);
 
               case 4:
                 // Store the current step
-                getStorage().then( /*#__PURE__*/function () {
-                  var _ref = __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.mark(function _callee4(storage) {
-                    return __WEBPACK_IMPORTED_MODULE_5__babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-                      while (1) {
-                        switch (_context4.prev = _context4.next) {
-                          case 0:
-                            _context4.next = 2;
-                            return storage.default.prototype.setLocalStorage("botup-".concat(window.flowID), step.id);
-
-                          case 2:
-                            return _context4.abrupt("return", _context4.sent);
-
-                          case 3:
-                          case "end":
-                            return _context4.stop();
-                        }
-                      }
-                    }, _callee4);
-                  }));
-
-                  return function (_x7) {
-                    return _ref.apply(this, arguments);
-                  };
-                }());
-                _context5.t0 = step.type;
-                _context5.next = _context5.t0 === "Message" ? 8 : _context5.t0 === "Varied Responses" ? 11 : _context5.t0 === "Get Phone Number" ? 25 : _context5.t0 === "Get Email" ? 32 : _context5.t0 === "Get Name" ? 47 : _context5.t0 === "Image With MCQ" ? 54 : _context5.t0 === "Redirect URL" ? 68 : _context5.t0 === "Video" ? 70 : _context5.t0 === "delay" ? 72 : _context5.t0 === "Get Input" ? 76 : _context5.t0 === "rest-dynamic-step-v2" ? 82 : _context5.t0 === "JS code" ? 84 : _context5.t0 === "hangup" ? 86 : 93;
+                this.storage.setLocalStorage("botup-".concat(window.flowID), step.id);
+                _context4.t0 = step.type;
+                _context4.next = _context4.t0 === "Message" ? 8 : _context4.t0 === "Varied Responses" ? 11 : _context4.t0 === "Get Phone Number" ? 25 : _context4.t0 === "Get Email" ? 32 : _context4.t0 === "Get Name" ? 47 : _context4.t0 === "Image With MCQ" ? 54 : _context4.t0 === "Redirect URL" ? 68 : _context4.t0 === "Video" ? 70 : _context4.t0 === "delay" ? 72 : _context4.t0 === "Get Input" ? 76 : _context4.t0 === "rest-dynamic-step-v2" ? 82 : _context4.t0 === "JS code" ? 84 : _context4.t0 === "hangup" ? 86 : 93;
                 break;
 
               case 8:
                 response = window._Botup.Chat.sendMessage(step.type, step.message, this.stateJSON);
                 this.stateJSON = null;
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 11:
                 window._Botup.Chat.sendVariedMessage(step.type, step, this.stateJSON);
 
               case 12:
                 if (false) {
-                  _context5.next = 24;
+                  _context4.next = 24;
                   break;
                 }
 
-                _context5.next = 15;
+                _context4.next = 15;
                 return this.receiveMessage();
 
               case 15:
-                response = _context5.sent;
+                response = _context4.sent;
 
                 if (!this.validateMCQCases(step.state, response)) {
-                  _context5.next = 21;
+                  _context4.next = 21;
                   break;
                 }
 
                 // Visitor send message directly without trigger MCQ option
                 response = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(response) == "object" ? response : this.selectedMCQ[0];
-                return _context5.abrupt("break", 24);
+                return _context4.abrupt("break", 24);
 
               case 21:
                 window._Botup.Chat.sendVariedMessage(step.type, step, response);
 
               case 22:
-                _context5.next = 12;
+                _context4.next = 12;
                 break;
 
               case 24:
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 25:
                 window._Botup.Chat.sendPhoneNumber(step.type, step, this.stateJSON); // Wait for response
 
 
-                _context5.next = 28;
+                _context4.next = 28;
                 return this.receiveMessage();
 
               case 28:
-                response = _context5.sent;
+                response = _context4.sent;
                 // Create object with step output from designer JSON & save data in state
                 this.saveInState("setPhoneNumber", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response)); // Save into state JSON
 
                 this.saveInState("setStateJSON", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response));
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 32:
                 window._Botup.Chat.sendEmail(step.type, step, this.stateJSON);
 
               case 33:
                 if (false) {
-                  _context5.next = 44;
+                  _context4.next = 44;
                   break;
                 }
 
-                _context5.next = 36;
+                _context4.next = 36;
                 return this.receiveMessage();
 
               case 36:
-                response = _context5.sent;
+                response = _context4.sent;
 
                 if (!this.validateEmail(response)) {
-                  _context5.next = 41;
+                  _context4.next = 41;
                   break;
                 }
 
-                return _context5.abrupt("break", 44);
+                return _context4.abrupt("break", 44);
 
               case 41:
                 window._Botup.Chat.sendMessage("", "Enter a valid email", response);
 
               case 42:
-                _context5.next = 33;
+                _context4.next = 33;
                 break;
 
               case 44:
@@ -21765,99 +21742,99 @@ var Bot = /*#__PURE__*/function () {
                 this.saveInState("setEmail", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response)); // Save into state JSON
 
                 this.saveInState("setStateJSON", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response));
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 47:
                 window._Botup.Chat.sendName(step.type, step, this.stateJSON);
 
-                _context5.next = 50;
+                _context4.next = 50;
                 return this.receiveMessage();
 
               case 50:
-                response = _context5.sent;
+                response = _context4.sent;
                 // Create object with step output from designer JSON & save data in state
                 this.saveInState("setName", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response)); // Save into state JSON
 
                 this.saveInState("setStateJSON", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response));
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 54:
                 window._Botup.Chat.sendImageWithMCQ(step.type, step, this.stateJSON);
 
               case 55:
                 if (false) {
-                  _context5.next = 67;
+                  _context4.next = 67;
                   break;
                 }
 
-                _context5.next = 58;
+                _context4.next = 58;
                 return this.receiveMessage();
 
               case 58:
-                response = _context5.sent;
+                response = _context4.sent;
 
                 if (!this.validateMCQCases(step.state, response)) {
-                  _context5.next = 64;
+                  _context4.next = 64;
                   break;
                 }
 
                 // Visitor send message directly without trigger MCQ option
                 response = __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_typeof___default()(response) == "object" ? response : this.selectedMCQ[0];
-                return _context5.abrupt("break", 67);
+                return _context4.abrupt("break", 67);
 
               case 64:
                 window._Botup.Chat.sendImageWithMCQ(step.type, step, response);
 
               case 65:
-                _context5.next = 55;
+                _context4.next = 55;
                 break;
 
               case 67:
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 68:
                 response = window._Botup.Chat.sendRedirectURL(step.type, step, null);
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 70:
                 response = window._Botup.Chat.sendVideo(step.type, step, null);
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 72:
-                _context5.next = 74;
+                _context4.next = 74;
                 return window._Botup.Chat.waitSendMessage(step.type, step, null);
 
               case 74:
-                response = _context5.sent;
-                return _context5.abrupt("break", 94);
+                response = _context4.sent;
+                return _context4.abrupt("break", 94);
 
               case 76:
                 window._Botup.Chat.sendInput(step.type, step, this.stateJSON);
 
-                _context5.next = 79;
+                _context4.next = 79;
                 return this.receiveMessage();
 
               case 79:
-                response = _context5.sent;
+                response = _context4.sent;
                 // Create object with step output from designer JSON & save data in state
                 this.saveInState("setStateJSON", __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_defineProperty___default()({}, step.Output, response));
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 82:
                 response = window._Botup.Chat.sendRest(step.type, step, null);
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 84:
                 response = this.execJSCode(step.code, window._Botup.State.getters.getStateJSON);
-                return _context5.abrupt("break", 94);
+                return _context4.abrupt("break", 94);
 
               case 86:
                 if (window._Botup.State.getters.getGeneratedKey) {
-                  _context5.next = 89;
+                  _context4.next = 89;
                   break;
                 }
 
-                _context5.next = 89;
+                _context4.next = 89;
                 return this.store.contactInfo();
 
               case 89:
@@ -21866,25 +21843,23 @@ var Bot = /*#__PURE__*/function () {
 
                 window._Botup.Chat.sendMessage("", "Thanks for using our bot. If you like this experience, get one of your own for your website at Botup.com by 500apps.", this.stateJSON);
 
-                getStorage().them(function (storage) {
-                  return storage.default.prototype.setLocalStorage("botup-".concat(window.flowID), undefined);
-                });
-                return _context5.abrupt("break", 94);
+                this.storage.setLocalStorage("botup-".concat(window.flowID), undefined);
+                return _context4.abrupt("break", 94);
 
               case 93:
-                return _context5.abrupt("return", new Promise(function (resolve, reject) {
+                return _context4.abrupt("return", new Promise(function (resolve, reject) {
                   resolve();
                 }));
 
               case 94:
-                return _context5.abrupt("return", response);
+                return _context4.abrupt("return", response);
 
               case 95:
               case "end":
-                return _context5.stop();
+                return _context4.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee4, this);
       }));
 
       function execStep(_x6) {
