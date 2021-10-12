@@ -17217,7 +17217,6 @@ window._Botup = new __WEBPACK_IMPORTED_MODULE_1__js_Botup__["a" /* default */]()
 
 
  // Bootstrap
-// import "bootstrap-vue/dist/bootstrap-vue.css";
 // import { BImg, BRow, BCardBody, BCard, BLink, BForm, BFormInput } from "bootstrap-vue/dist/bootstrap-vue.common.min.js";
 // Vue.component("b-img", BImg);
 // Vue.component("b-row", BRow);
