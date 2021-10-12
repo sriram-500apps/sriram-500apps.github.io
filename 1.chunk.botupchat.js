@@ -282,7 +282,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
     Header: __WEBPACK_IMPORTED_MODULE_0__Window_Header_vue__["a" /* default */],
     Footer: __WEBPACK_IMPORTED_MODULE_1__Window_Footer_vue__["a" /* default */],
     InputEditor: function InputEditor() {
-      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 229));
+      return __webpack_require__.e/* import() */(3/* duplicate */).then(__webpack_require__.bind(null, 229));
     }
   },
   mounted: function mounted() {},

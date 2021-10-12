@@ -278,10 +278,10 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
     Header: __WEBPACK_IMPORTED_MODULE_0__Window_Header__["a" /* default */],
     Footer: __WEBPACK_IMPORTED_MODULE_1__Window_Footer__["a" /* default */],
     Messages: function Messages() {
-      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 241));
+      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 241));
     },
     InputEditor: function InputEditor() {
-      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 229));
+      return __webpack_require__.e/* import() */(3/* duplicate */).then(__webpack_require__.bind(null, 229));
     }
   },
   mounted: function mounted() {
