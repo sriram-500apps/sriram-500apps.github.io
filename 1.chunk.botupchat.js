@@ -1,13 +1,13 @@
 webpackJsonp([1],{
 
-/***/ 219:
+/***/ 220:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Welcome_vue__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Window_vue__ = __webpack_require__(231);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a43e968e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Welcome_vue__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3b9c9cf6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Window_vue__ = __webpack_require__(249);
 var normalizeComponent = __webpack_require__(58)
 /* script */
 
@@ -23,8 +23,8 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Welcome_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a43e968e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Welcome_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Window_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3b9c9cf6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Window_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -245,17 +245,12 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 
 /***/ }),
 
-/***/ 228:
+/***/ 231:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Window_Header_vue__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Window_Footer_vue__ = __webpack_require__(226);
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Window_Header__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Window_Footer__ = __webpack_require__(226);
 //
 //
 //
@@ -275,40 +270,34 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      UIPrefs: window._Botup.UIPrefs.prefs
+      UIPrefs: window._Botup.UIPrefs.prefs,
+      receiverMessage: {}
     };
   },
   components: {
-    Header: __WEBPACK_IMPORTED_MODULE_0__Window_Header_vue__["a" /* default */],
-    Footer: __WEBPACK_IMPORTED_MODULE_1__Window_Footer_vue__["a" /* default */],
+    Header: __WEBPACK_IMPORTED_MODULE_0__Window_Header__["a" /* default */],
+    Footer: __WEBPACK_IMPORTED_MODULE_1__Window_Footer__["a" /* default */],
+    Messages: function Messages() {
+      return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 241));
+    },
     InputEditor: function InputEditor() {
-      return __webpack_require__.e/* import() */(3/* duplicate */).then(__webpack_require__.bind(null, 229));
+      return __webpack_require__.e/* import() */(4/* duplicate */).then(__webpack_require__.bind(null, 229));
     }
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    console.log("hi");
+  },
   created: function created() {},
-  methods: {
-    // Redirects to chat while visitor trigger input editor
-    router: function router() {
-      this.$router.push({
-        name: "chat",
-        params: {
-          active: true
-        }
-      }); // To set chat status in vuex while chat end session
-
-      window._Botup.State.commit("setChatStatus", true);
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
 
-/***/ 240:
+/***/ 249:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('div',{staticClass:"botup-chat",style:(_vm.UIPrefs.chat_width.css)},[_c('Header'),_vm._v(" "),_c('div',{staticClass:"botup-min-height-welcome"},[_c('div',{staticClass:"botup-welcome-box",style:(_vm.UIPrefs.chat_body.css)},[_c('div',{staticClass:"botup-welcome-bg"},[_c('div',{staticClass:"botup-welcome-message"},[_vm._v("\n            "+_vm._s(_vm.UIPrefs.chat_header.attr.bot_welcome_msg)+"\n            "),_c('img',{attrs:{"src":_vm.UIPrefs.chat_header.attr.welcome_img,"height":"20"}})])])])]),_vm._v(" "),_c('InputEditor',{attrs:{"enableChat":true},on:{"click":function($event){return _vm.router()}}}),_vm._v(" "),_c('Footer')],1)])}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"botup-chat",style:(_vm.UIPrefs.chat_width.css),attrs:{"id":"app"}},[_c('div',[_c('Header'),_vm._v(" "),_c('div',{staticClass:"chat-body-height botup-bg-img-section",style:(_vm.UIPrefs.chat_body.css),attrs:{"id":"botupchat"}},[_c('Messages')],1),_vm._v(" "),_c('div',[_c('InputEditor'),_vm._v(" "),_c('Footer')],1)],1)])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
