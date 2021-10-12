@@ -2997,7 +2997,7 @@ if (typeof Set !== 'undefined' && isNative(Set)) {
   _Set = Set;
 } else {
   // a non-standard Set polyfill that only works with primitive keys.
-  _Set = /*@__PURE__*/function () {
+  _Set = function () {
     function Set() {
       this.set = Object.create(null);
     }
@@ -7800,8 +7800,7 @@ var KeepAlive = {
       var exclude = ref.exclude;
 
       if ( // not included
-      include && (!name || !matches(include, name)) || // excluded
-      exclude && name && matches(exclude, name)) {
+      include && (!name || !matches(include, name)) || exclude && name && matches(exclude, name)) {
         return vnode;
       }
 
@@ -19142,9 +19141,7 @@ function VuexPersistence(options) {
      */
 
     this.saveState = options.saveState != null ? options.saveState : function (key, state, storage) {
-      return storage.setItem(key, // Second argument is state _object_ if asyc storage, stringified otherwise
-      // do not stringify the state if the storage type is async
-      _this2.asyncStorage ? merge({}, state || {}, _this2.mergeOption) : _this2.supportCircular ? FlattedJSON.stringify(state) : JSON.stringify(state));
+      return storage.setItem(key, _this2.asyncStorage ? merge({}, state || {}, _this2.mergeOption) : _this2.supportCircular ? FlattedJSON.stringify(state) : JSON.stringify(state));
     };
     /**
      * Async version of plugin
@@ -19203,8 +19200,7 @@ function VuexPersistence(options) {
      */
 
     this.saveState = options.saveState != null ? options.saveState : function (key, state, storage) {
-      return storage.setItem(key, // Second argument is state _object_ if localforage, stringified otherwise
-      _this2.supportCircular ? FlattedJSON.stringify(state) : JSON.stringify(state));
+      return storage.setItem(key, _this2.supportCircular ? FlattedJSON.stringify(state) : JSON.stringify(state));
     };
     /**
      * Sync version of plugin
@@ -31179,9 +31175,7 @@ function stringToRegexp(path, keys, options) {
 
 function tokensToRegExp(tokens, keys, options) {
   if (!isarray(keys)) {
-    options =
-    /** @type {!Object} */
-    keys || options;
+    options = keys || options;
     keys = [];
   }
 
@@ -31254,33 +31248,21 @@ function tokensToRegExp(tokens, keys, options) {
 
 function pathToRegexp(path, keys, options) {
   if (!isarray(keys)) {
-    options =
-    /** @type {!Object} */
-    keys || options;
+    options = keys || options;
     keys = [];
   }
 
   options = options || {};
 
   if (path instanceof RegExp) {
-    return regexpToRegexp(path,
-    /** @type {!Array} */
-    keys);
+    return regexpToRegexp(path, keys);
   }
 
   if (isarray(path)) {
-    return arrayToRegexp(
-    /** @type {!Array} */
-    path,
-    /** @type {!Array} */
-    keys, options);
+    return arrayToRegexp(path, keys, options);
   }
 
-  return stringToRegexp(
-  /** @type {string} */
-  path,
-  /** @type {!Array} */
-  keys, options);
+  return stringToRegexp(path, keys, options);
 }
 
 pathToRegexp_1.parse = parse_1;
@@ -32750,7 +32732,7 @@ function bindEnterGuard(guard, match, key) {
 /*  */
 
 
-var HTML5History = /*@__PURE__*/function (History) {
+var HTML5History = function (History) {
   function HTML5History(router, base) {
     History.call(this, router, base);
     this._startLocation = getLocation(this.base);
@@ -32854,7 +32836,7 @@ function getLocation(base) {
 /*  */
 
 
-var HashHistory = /*@__PURE__*/function (History) {
+var HashHistory = function (History) {
   function HashHistory(router, base, fallback) {
     History.call(this, router, base); // check history fallback deeplinking
 
@@ -33010,7 +32992,7 @@ function replaceHash(path) {
 /*  */
 
 
-var AbstractHistory = /*@__PURE__*/function (History) {
+var AbstractHistory = function (History) {
   function AbstractHistory(router, base) {
     History.call(this, router, base);
     this.stack = [];
