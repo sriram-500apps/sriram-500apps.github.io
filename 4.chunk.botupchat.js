@@ -1,17 +1,17 @@
 webpackJsonp([4],{
 
-/***/ 223:
+/***/ 227:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_InputEditor_vue__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_InputEditor_vue__ = __webpack_require__(228);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_09841756_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_InputEditor_vue__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_09841756_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_InputEditor_vue__ = __webpack_require__(237);
 function injectStyle (ssrContext) {
-  __webpack_require__(231)
+  __webpack_require__(235)
 }
-var normalizeComponent = __webpack_require__(57)
+var normalizeComponent = __webpack_require__(58)
 /* script */
 
 
@@ -39,7 +39,7 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 224:
+/***/ 228:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -118,13 +118,13 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 231:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(232);
+var content = __webpack_require__(236);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -132,7 +132,7 @@ var update = __webpack_require__(105)("25c50cce", content, true, {});
 
 /***/ }),
 
-/***/ 232:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(104)(false);
@@ -147,7 +147,7 @@ exports.push([module.i, ".flex-column-reverse{width:320px}.botupchat-footer-sect
 
 /***/ }),
 
-/***/ 233:
+/***/ 237:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
