@@ -1,17 +1,17 @@
 webpackJsonp([4],{
 
-/***/ 227:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_InputEditor_vue__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_InputEditor_vue__ = __webpack_require__(224);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_09841756_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_InputEditor_vue__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0f51b9ce_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_InputEditor_vue__ = __webpack_require__(233);
 function injectStyle (ssrContext) {
-  __webpack_require__(235)
+  __webpack_require__(231)
 }
-var normalizeComponent = __webpack_require__(58)
+var normalizeComponent = __webpack_require__(57)
 /* script */
 
 
@@ -27,7 +27,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_InputEditor_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_09841756_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_InputEditor_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0f51b9ce_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_InputEditor_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -39,10 +39,13 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 228:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
+//
+//
 //
 //
 //
@@ -118,21 +121,21 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 235:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(236);
+var content = __webpack_require__(232);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(105)("25c50cce", content, true, {});
+var update = __webpack_require__(105)("3425f066", content, true, {});
 
 /***/ }),
 
-/***/ 236:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(104)(false);
@@ -147,12 +150,12 @@ exports.push([module.i, ".flex-column-reverse{width:320px}.botupchat-footer-sect
 
 /***/ }),
 
-/***/ 237:
+/***/ 233:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"botupchat-footer-section"},[_c('div',{staticClass:"botupchat-text-area-icons"},[_c('div',{staticClass:"botupchat-footer-icons"},[_c('b-form',{on:{"submit":function($event){$event.preventDefault();return _vm.submit.apply(null, arguments)}}},[_c('b-form-input',{staticClass:"pr-3 bg-input-color",attrs:{"id":"editor","type":"text","size":"lg","required":"","oninvalid":"Enter at least 5 characters","state":_vm.content.length >= 10,"onchange":"setCustomValidity('')","placeholder":"Write a reply...","aria-describedby":"input-live-help input-url-feedback"},on:{"blur":function($event){return _vm.submit()},"keyup":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return $event.target.blur()}},model:{value:(_vm.content),callback:function ($$v) {_vm.content=$$v},expression:"content"}}),_vm._v(" "),(_vm.add_button)?_c('button',{staticClass:"botupchat-send-icon",attrs:{"type":"submit"}},[_c('svg',{staticClass:"botup-send-img",attrs:{"disabled":_vm.button_disable || !_vm.content || _vm.content.length > _vm.max_length,"viewBox":"0 0 29 29","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M0 0L29 14.5L0 29L8.5 14.5L0 0Z","fill":"#4E71EE"}})])]):_vm._e()],1)],1)])])}
-var staticRenderFns = []
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"botupchat-footer-section"},[_c('div',{staticClass:"botupchat-text-area-icons"},[_c('div',{staticClass:"botupchat-footer-icons"},[_vm._m(0),_vm._v(" "),_c('form',{on:{"submit":function($event){$event.preventDefault();return _vm.submit.apply(null, arguments)}}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"pr-3 bg-input-color",attrs:{"id":"editor","type":"text","size":"lg","required":"","oninvalid":"Enter at least 5 characters","state":_vm.content.length >= 10,"onchange":"setCustomValidity('')","placeholder":"Write a reply...","aria-describedby":"input-live-help input-url-feedback"},domProps:{"value":(_vm.content)},on:{"blur":function($event){return _vm.submit()},"keyup":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return $event.target.blur()},"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value}}}),_vm._v(" "),(_vm.add_button)?_c('button',{staticClass:"botupchat-send-icon",attrs:{"type":"submit"}},[_c('svg',{staticClass:"botup-send-img",attrs:{"disabled":_vm.button_disable || !_vm.content || _vm.content.length > _vm.max_length,"viewBox":"0 0 29 29","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('path',{attrs:{"d":"M0 0L29 14.5L0 29L8.5 14.5L0 0Z","fill":"#4E71EE"}})])]):_vm._e()])])])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',[_c('input',{attrs:{"type":"text"}})])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
 
