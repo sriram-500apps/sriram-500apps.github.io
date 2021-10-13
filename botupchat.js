@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		1: 0
+/******/ 		2: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -23827,15 +23827,24 @@ module.exports = exports['default'];
 
  // import moment from "moment/src/moment";
 
+var getMoment = function getMoment() {
+  return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 129));
+};
+
 
 
 var Chat = /*#__PURE__*/function () {
   function Chat() {
+    var _this = this;
+
     __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_classCallCheck___default()(this, Chat);
 
     this.conversation = new __WEBPACK_IMPORTED_MODULE_2__conversations__["a" /* default */]();
     this.activeConversation = [];
     this.storage = new __WEBPACK_IMPORTED_MODULE_4__util_storage__["a" /* default */]();
+    getMoment().then(function (moment) {
+      _this.moment = new moment.default();
+    });
   }
   /**
    * Send message
@@ -24012,7 +24021,7 @@ var Chat = /*#__PURE__*/function () {
   }, {
     key: "waitSendMessage",
     value: function waitSendMessage(type, message, toOrFrom) {
-      var _this = this;
+      var _this2 = this;
 
       var obj = {};
       var days = message.days * 24 * 60 * 60;
@@ -24021,11 +24030,11 @@ var Chat = /*#__PURE__*/function () {
       var milliSec = (days + hours + minutes) * 1000;
       return new Promise(function (resolve, reject) {
         // Usage!
-        _this.sleep(milliSec, resolve).then(function () {
+        _this2.sleep(milliSec, resolve).then(function () {
           obj.to = toOrFrom ? toOrFrom : null;
           obj.from = null; // To save data in vuex
 
-          _this.saveInState(obj);
+          _this2.saveInState(obj);
 
           resolve("success");
         });
@@ -24051,9 +24060,8 @@ var Chat = /*#__PURE__*/function () {
 
 
       var date = new Date(); // Format current date like MMM DD,YYYY
-      // obj.time = moment(date).format("MMM DD,YYYY hh:mm A");
 
-      obj.time = date.toISOString().split("T")[0]; // To save data in vuex
+      obj.time = this.moment(date).format("MMM DD,YYYY hh:mm A"); // To save data in vuex
 
       __WEBPACK_IMPORTED_MODULE_3__core_state__["a" /* default */].commit("setMessages", obj); // Object push into array of JSON
 
