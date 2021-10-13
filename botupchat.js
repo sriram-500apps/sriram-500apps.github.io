@@ -23825,7 +23825,7 @@ module.exports = exports['default'];
 
 
 
- // import moment from "moment/src/moment";
+
 
 var getMoment = function getMoment() {
   return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 129));
@@ -23844,7 +23844,6 @@ var Chat = /*#__PURE__*/function () {
     this.storage = new __WEBPACK_IMPORTED_MODULE_4__util_storage__["a" /* default */]();
     getMoment().then(function (moment) {
       _this.moment = new moment.default();
-      console.log("moment lazy", _this.moment);
     });
   }
   /**
@@ -24057,13 +24056,10 @@ var Chat = /*#__PURE__*/function () {
         obj.from = "";
         delete obj.information;
         delete obj.cases;
-      } // Set time
+      } // Format current date like MMM DD,YYYY
 
 
-      var date = new Date(); // Format current date like MMM DD,YYYY
-
-      obj.time = this.moment(date).format("MMM DD,YYYY hh:mm A"); // obj.time = date.toISOString().split("T")[0];
-      // To save data in vuex
+      obj.time = this.moment.format("MMM DD,YYYY hh:mm A"); // To save data in vuex
 
       __WEBPACK_IMPORTED_MODULE_3__core_state__["a" /* default */].commit("setMessages", obj); // Object push into array of JSON
 
