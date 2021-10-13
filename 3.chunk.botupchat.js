@@ -7,7 +7,7 @@ webpackJsonp([3],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Conversations_vue__ = __webpack_require__(234);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_006a1bf3_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Conversations_vue__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1507dba6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Conversations_vue__ = __webpack_require__(248);
 var normalizeComponent = __webpack_require__(58)
 /* script */
 
@@ -24,7 +24,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Conversations_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_006a1bf3_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Conversations_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_1507dba6_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Conversations_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -95,7 +95,7 @@ var Component = normalizeComponent(
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"body-scroll",style:(_vm.UIPrefs.font_family.css),attrs:{"id":"botupchat"}},[_c('div',{staticClass:"botup-welcome-box"},[_c('div',{staticClass:"botup-welcome-bg"},[_c('div',{staticClass:"botup-welcome-message"},[_vm._v("\n          "+_vm._s(_vm.UIPrefs.chat_header.attr.bot_welcome_msg)+"\n          "),_c('b-img',{attrs:{"src":_vm.UIPrefs.chat_header.attr.welcome_img,"height":"20"}})],1)])]),_vm._v(" "),_vm._l((_vm.conversations),function(list,index){return _c('Message',{key:index,attrs:{"conversations":list}})})],2)])}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"body-scroll",style:(_vm.UIPrefs.font_family.css),attrs:{"id":"botupchat"}},[_c('div',{staticClass:"botup-welcome-box"},[_c('div',{staticClass:"botup-welcome-bg"},[_c('div',{staticClass:"botup-welcome-message"},[_vm._v("\n          "+_vm._s(_vm.UIPrefs.chat_header.attr.bot_welcome_msg)+"\n          "),_c('img',{attrs:{"src":_vm.UIPrefs.chat_header.attr.welcome_img,"height":"20"}})])])]),_vm._v(" "),_vm._l((_vm.conversations),function(list,index){return _c('Message',{key:index,attrs:{"conversations":list}})})],2)])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
