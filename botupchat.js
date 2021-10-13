@@ -17740,6 +17740,7 @@ var Bot = /*#__PURE__*/function () {
 
       var Handlebars = __webpack_require__(82);
 
+      console.log("hello");
       var template = Handlebars.compile(value);
       var data = {};
       stateJSON.forEach(function (item) {
