@@ -8,11 +8,52 @@
     <meta name="theme-color" content="#23358E" />
     <link rel="icon" href="https://infinity.500apps.com/favicon.webp" />
     <title>Signup status</title>
-    <link rel="stylesheet" href="https://infinity.500apps.com/css/theme.css" />
+    <link rel="stylesheet" href="https://status.500apps.com/css/theme.css" />
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
-    <link rel="stylesheet" href="https://infinity.500apps.com/fonts/feather/feather.css" />
-
+    <link rel="preload" as="font" href="https://status.500apps.com/fonts/cerebrisans/cerebrisans-regular.woff"
+        type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="https://status.500apps.com/fonts/cerebrisans/cerebrisans-medium.woff"
+        type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="https://status.500apps.com/fonts/cerebrisans/cerebrisans-semibold.woff"
+        type="font/woff" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://status.500apps.com/fonts/feather/feather.css">
     <style>
+        .app-accordian {
+            position: relative;
+        }
+
+        .app-accordian.collapsed:after {
+            content: "\e930";
+            font-family: 'Feather' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            top: 15px;
+            right: 10px;
+            position: absolute;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .app-accordian.not-collapsed:after {
+            content: "\e92e";
+            font-family: 'Feather' !important;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            top: 15px;
+            right: 10px;
+            position: absolute;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         .table-sm th,
         .table-sm td {
             padding: 0.7rem 0.7rem 0.5rem 0.7rem !important;
@@ -924,32 +965,8 @@
                         <!-- Ninjaseo Header -->
                         <div class="row mx-0">
                             <div
-                                class="bg-light col-12 d-md-block d-lg-flex d-block justify-content-between px-3 padding-20 align-items-center">
+                                class="bg-light col-12 d-md-block d-lg-flex d-block justify-content-between px-3 padding-20 align-items-center py-3">
                                 <h2 class="font-weight-bold mb-0 text-nowrap">NinjaSEO Reports</h2>
-                                <div class="d-lg-flex d-md-flex d-block py-2">
-                                    <div class="my-1 width_330 text-lg-right">
-                                        <b-form-group label-cols-lg="2" content-cols-lg="10" content-cols="12"
-                                            label-class="text-lg-right text-left" content-class="px-0"
-                                            content-cols-md="12" class="px-md-1 mb-0" id="input-group-1" label="From"
-                                            label-for="input-5" class="mb-0">
-                                            <b-form-datepicker id="input-5-analytic" class="border" v-model="fromDate"
-                                                locale="en" @input="dateSelected()" type="date" required
-                                                placeholder="From date"></b-form-datepicker>
-                                        </b-form-group>
-                                    </div>
-                                    <div class="ml-lg-n4 ml-md-n2 my-1 pl-md-1 width_330">
-                                        <b-form-group label-class="text-lg-right text-left" content-class="px-0"
-                                            label-cols-lg="2" content-cols="12" content-cols-lg="10"
-                                            content-cols-md="12" class="px-md-1 mb-0" id="input-group-2" label="To"
-                                            label-for="input-5" class="mb-0">
-                                            <b-form-datepicker id="input-end-date-analytic" class="border"
-                                                v-model="toDate" :min="fromDate" locale="en" @input="showSEOReports()"
-                                                type="date" :max="maxDate" required placeholder="To date"
-                                                :disabled="!fromDate">
-                                            </b-form-datepicker>
-                                        </b-form-group>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <!-- Ninjaseo Graphs -->
@@ -964,67 +981,83 @@
                                     <p style="font-size: 16px">Kindly change the date range and try again</p>
                                 </b-col>
 
-                                <b-col lg="6" md="12" v-if="!hidePageGrader" class="py-lg-5 py-3 px-0 min-height-60vh">
+                                <b-col lg="6" md="12" v-if="!hidePageGrader" class="py-lg-5 py-3 px-0">
                                     <figure class="highcharts-figure">
                                         <div id="container-pie-ninjaseo-page_grader"></div>
                                     </figure>
                                 </b-col>
-                                <b-col lg="6" v-if="!hideLinkTracking" class="py-lg-5 py-3 px-0 min-height-60vh">
+                                <b-col lg="6" v-if="!hideLinkTracking" class="py-lg-5 py-3 px-0">
                                     <figure class="highcharts-figure">
                                         <div id="container-pie-ninjaseo-link_tracking"></div>
                                     </figure>
                                 </b-col>
-                                <b-col lg="12" v-if="!hideRankings" class="py-lg-5 py-3 px-0 min-height-60vh">
-                                    <figure class="highcharts-figure">
+                                <b-col lg="12" v-if="!hideRankings" class="py-lg-5 py-3 px-0">
+                                    <figure class="highcharts-figure m-0 mb-4">
                                         <div id="container-pie-ninjaseo-rankings"></div>
-                                        <div class="border rounded">
-                                            <b-row class="pr-2 pt-4" v-if="RankingsDomainCount">
-                                                <b-col lg="3" class="text-center">
-                                                    <h4>Unique Keyword Count</h4>
-                                                    <p class="h2">{{RankingsKeywordCount}}</p>
-                                                </b-col>
-                                                <b-col lg="3" class="text-center">
-                                                    <h4>Domain Count</h4>
-                                                    <p class="h2">{{RankingsDomainCount}}</p>
-                                                </b-col>
-                                                <b-col lg="3" class="text-center">
-                                                    <h4>Position Rank Below 100</h4>
-                                                    <p class="h2">
-                                                        {{`${seoStatistics.below_100.length}(${getPercentage(seoStatistics.below_100)}%)`}}
-                                                    </p>
-                                                </b-col>
-                                                <b-col lg="3" class="text-center">
-                                                    <h4>Position Rank Below 50</h4>
-                                                    <p class="h2">
-                                                        {{`${seoStatistics.below_50.length}(${getPercentage(seoStatistics.below_50)}%)`}}
-                                                    </p>
-                                                </b-col>
-                                                <b-col lg="3" class="text-center">
-                                                    <h4>Position Rank Below 25</h4>
-                                                    <p class="h2">
-                                                        {{`${seoStatistics.below_25.length}(${getPercentage(seoStatistics.below_25)}%)`}}
-                                                    </p>
-                                                </b-col>
-                                                <b-col lg="3" class="text-center">
-                                                    <h4>Position Rank Below 10</h4>
-                                                    <p class="h2">
-                                                        {{`${seoStatistics.below_10.length}(${getPercentage(seoStatistics.below_10)}%)`}}
-                                                    </p>
-                                                </b-col>
-                                                <b-col lg="3" class="text-center">
-                                                    <h4>Position Rank Below 5</h4>
-                                                    <p class="h2">
-                                                        {{`${seoStatistics.below_5.length}(${getPercentage(seoStatistics.below_5)}%)`}}
-                                                    </p>
-                                                </b-col>
-                                            </b-row>
-                                            <b-row v-else class="text-center">
-                                                <b-col class="m-5">
-                                                    <b-spinner variant="primary"></b-spinner>
-                                                </b-col>
-                                            </b-row>
-                                        </div>
                                     </figure>
+                                    <div>
+                                        <b-row class="border roundedborder mx-7 rounded" v-if="RankingsDomainCount">
+                                            <b-col lg="3" class="text-center border-right border-bottom pt-4">
+                                                <h4>All Keywords</h4>
+                                                <p class="h2">{{RankingsKeywordCount}}</p>
+                                            </b-col>
+                                            <b-col lg="3" class="text-center border-right border-bottom pt-4">
+                                                <h4>Total Apps</h4>
+                                                <p class="h2">{{RankingsDomainCount}}</p>
+                                            </b-col>
+                                            <b-col lg="3" class="text-center border-right border-bottom  pt-4">
+                                                <h4>Below 100 Positions</h4>
+                                                <div class="d-inline-flex mx-auto">
+                                                    <p class="h2 mr-1">
+                                                        {{`${seoStatistics.below_100.length}`}}
+                                                    </p>
+                                                    <span> {{`(${getPercentage(seoStatistics.below_100)}%)`}}</span>
+                                                </div>
+
+                                            </b-col>
+                                            <b-col lg="3" class="text-center border-bottom pt-4">
+                                                <h4>Below 50 Positions</h4>
+                                                <div class="d-inline-flex mx-auto">
+                                                    <p class="h2 mr-1">
+                                                        {{`${seoStatistics.below_50.length}`}}
+                                                    </p>
+                                                    <span> {{`(${getPercentage(seoStatistics.below_50)}%)`}}</span>
+                                                </div>
+                                            </b-col>
+                                            <b-col lg="3" class="text-center border-right pt-4">
+                                                <h4>Below 25 Positions</h4>
+                                                <div class="d-inline-flex mx-auto">
+                                                    <p class="h2 mr-1">
+                                                        {{`${seoStatistics.below_25.length}`}}
+                                                    </p>
+                                                    <span> {{`(${getPercentage(seoStatistics.below_25)}%)`}}</span>
+                                                </div>
+                                            </b-col>
+                                            <b-col lg="3" class="text-center border-right pt-4">
+                                                <h4>Below 10 Positions</h4>
+                                                <div class="d-inline-flex mx-auto">
+                                                    <p class="h2 mr-1">
+                                                        {{`${seoStatistics.below_10.length}`}}
+                                                    </p>
+                                                    <span> {{`(${getPercentage(seoStatistics.below_10)}%)`}}</span>
+                                                </div>
+                                            </b-col>
+                                            <b-col lg="3" class="text-center border-right pt-4">
+                                                <h4>Below 5 Positions</h4>
+                                                <div class="d-inline-flex mx-auto">
+                                                    <p class="h2 mr-1">
+                                                        {{`${seoStatistics.below_5.length}`}}
+                                                    </p>
+                                                    <span> {{`(${getPercentage(seoStatistics.below_5)}%)`}}</span>
+                                                </div>
+                                            </b-col>
+                                        </b-row>
+                                        <b-row v-else class="border mx-7 rounded row text-center">
+                                            <b-col class="m-5">
+                                                <b-spinner variant="primary"></b-spinner>
+                                            </b-col>
+                                        </b-row>
+                                    </div>
                                 </b-col>
                             </div>
                         </div>
@@ -1033,12 +1066,13 @@
                             <b-tabs v-on:activate-tab="seoTabActivated">
                                 <b-tab :id="app.value" :title="app.text" v-for="app in ninjaSEOList">
                                     <div v-if="seoTableData[app.value] && seoTableData[app.value].length"
-                                        style="overflow-y: auto !important;height: 600px !important;"
                                         @scroll="onScroll($event, app.value)">
-                                        <div class="d-flex justify-content-end my-3">
-                                            <b-button :variant="!accordionVisible[app.value]?'primary':'warning'"
+                                        <div class="d-flex justify-content-end my-3 position-relative">
+                                            <b-button size="sm"
+                                                :variant="!accordionVisible[app.value]?'primary position-absolute':'white text-primary position-absolute'"
                                                 @click="accordionVisible[app.value]=!accordionVisible[app.value]"
-                                                v-if="seoTableData[app.value].length">
+                                                v-if="seoTableData[app.value].length"
+                                                style="top:-60px !important; z-index:9999 !important;">
                                                 {{accordionVisible[app.value]?'Close All':'Open All'}}
                                             </b-button>
                                         </div>
@@ -1046,9 +1080,9 @@
                                             <div v-if="item[0]">
                                                 <b-card-header header-tag="header" class="p-0 height-50" role="tab">
                                                     <b-button v-b-toggle="`collapse-${item[0].id}`" variant="white"
-                                                        class="text-left">
-                                                        <img :src="getAppLogo(app.value, item[0])"
-                                                            class="rounded-circle" width="30" height="30" />
+                                                        class="text-left app-accordian">
+                                                        <img :src="getAppLogo(app.value, item[0])" class="rounded"
+                                                            width="30" height="30" />
                                                         {{getAppName(app.value, item[0])}}
                                                     </b-button>
                                                 </b-card-header>
@@ -1064,7 +1098,7 @@
                                                                 "--" }}
                                                             </template>
                                                             <template #cell(history)="data">
-                                                                <b-link @click="showHistory(data.item)"
+                                                                <b-link @click="showHistory(data.item,app.value)"
                                                                     v-b-toggle.history_sidebar>
                                                                     History</b-link>
                                                             </template>
@@ -1094,7 +1128,7 @@
                                                                     </span>)
                                                                 </span>
                                                                 <span
-                                                                    v-else-if="positionStatus(data.item) && positionStatus(data.item).search('increased') !== -1">
+                                                                    v-else-if="positionStatus(data.item) && positionStatus(data.item).search('decreased') !== -1">
                                                                     (<span class="fe fe-arrow-down text-danger"
                                                                         :id="'decreased-tooltip-' + data.item.id">{{
                                                                         positionStatus(data.item).split(" ")[2] }}
@@ -1459,14 +1493,6 @@
 
                         <b-overlay :show="isBusy || loadContentData " no-wrap opacity="0.5" spinner-variant="primary">
                         </b-overlay>
-                    </b-tab>
-                    <b-tab title="Sites Status" class="w-100" @click="showSitesStatus=true">
-                        <div class="row mx-0 mx-lg-3" v-if="showSitesStatus">
-                            <b-col class="col-12 col-12 text-center min-height-60vh">
-                                <iframe src="https://sites-status.500apps.net" height="800px" width="100%"
-                                    title="500appsInfinity"></iframe>
-                            </b-col>
-                        </div>
                     </b-tab>
                     <b-tab title="Projectsly" class="w-100" @click="resetDates('projectsly')" lazy>
                         <div>
@@ -2115,7 +2141,6 @@
                 rerender: 0,
                 showGitReports: false,
                 isBusy: false,
-                showSitesStatus: false,
                 regions: [{
                     value: "",
                     text: "All"
@@ -2269,18 +2294,19 @@
                     emptyState: false
                 },
                 ],
-                ninjaSEOList: [{
-                    value: "page_grader",
-                    text: "Page Grader"
-                },
-                {
-                    value: "rankings",
-                    text: "Rankings"
-                },
-                {
-                    value: "link_tracking",
-                    text: "Link Tracking"
-                },
+                ninjaSEOList: [
+                    {
+                        value: "rankings",
+                        text: "Rankings"
+                    },
+                    {
+                        value: "page_grader",
+                        text: "Page Grader"
+                    },
+                    {
+                        value: "link_tracking",
+                        text: "Link Tracking"
+                    },
                 ],
                 ninjaChatList: [{
                     value: "departments",
@@ -2330,12 +2356,14 @@
                 ],
                 pageGraderFields: [{
                     key: "domain_url",
-                    label: "Domain URL"
+                    label: "Domain URL",
+                    thStyle: "width: 500px !important;"
                 },
                 {
                     key: "keyword",
                     label: "Keyword",
-                    sortable: true
+                    sortable: true,
+                    thStyle: "width: 400px !important;"
                 },
                 {
                     key: "score",
@@ -2359,25 +2387,19 @@
                 ],
                 rankingsFields: [{
                     key: "keywords",
-                    label: "Keyword"
-                },
-                {
-                    key: "country",
-                    label: "Country"
-                },
-                {
-                    key: "created_date",
-                    label: "Created Date",
-                    data_type: "date"
-                },
-                {
-                    key: "position_url",
-                    label: "Position URL"
+                    label: "Keyword",
+                    thStyle: "width: 400px !important;"
                 },
                 {
                     key: "keyword_position",
                     label: "Rank",
-                    sortable: true
+                    sortable: true,
+                    thStyle: "width: 150px !important;"
+                },
+                {
+                    key: "position_url",
+                    label: "Position URL",
+                    thStyle: "width: 500px !important;"
                 },
                 {
                     key: "updated_date",
@@ -2386,17 +2408,23 @@
                     sortable: true
                 },
                 {
+                    key: "country",
+                    label: "Country"
+                },
+                {
                     key: "history",
                     label: "History"
                 },
                 ],
                 linkTrackingFields: [{
                     key: "keyword",
-                    label: "Keyword"
+                    label: "Keyword",
+                    thStyle: "width: 300px !important;"
                 },
                 {
                     key: "da_url",
-                    label: "Backlink URL"
+                    label: "Backlink URL",
+                    thStyle: "width: 500px !important;"
                 },
                 {
                     key: "link_status",
@@ -2567,7 +2595,6 @@
                 regionNames: new Intl.DisplayNames(["en"], {
                     type: "region"
                 }),
-                userNamesData: {},
                 seoStatistics: {
                     below_100: [],
                     below_50: [],
@@ -2687,12 +2714,6 @@
                 this.getUserData()
             },
 
-            computed: {
-                getUserName() {
-                    return this.userNamesData;
-                },
-            },
-
             methods: {
                 getgitData() {
                     this.showGitReports = false;
@@ -2754,7 +2775,7 @@
                             if (this.tabType == "analytics") this.generateBarAnalytics();
                             else if (this.tabType == "ninjacontent") this.showContentReports();
                             else if (this.tabType == "ninjaseo") this.showSEOReports();
-                            else if (this.tabType == "outreachly") this.showOutreachlyReports();
+                            else if (this.tabType == "outreachly") this.showOutreachlyReports("", true);
                             else if (this.tabType == "ninjachat") this.showNinjachatReports();
                             else if (this.tabType == "support") this.showSupportReports();
                             else if (this.tabType == "projectsly") this.show_projectsly_reports();
@@ -2932,8 +2953,9 @@
                     else if (type == "country" && !count) this.hideCountryReport = true;
                     else if (type == "auth_type" && !count) this.hideAuthReport = true;
                     let title;
-                    if (type.includes("ninjacontent") || type.includes("ninjaseo") || type.includes(
+                    if (type.includes("ninjacontent") || type.includes(
                         "ninjachat")) title = `${type.split("-")[1].replace("_", " ")} Total Count : ${count}`;
+                    else if (type.includes('ninjaseo')) title = `${type.split("-")[1].replace("_", " ")} Total Keywords : ${count}`;
                     else if (type.includes('support')) title = `${data.name} Total Ticket Count:${count}`
                     else type.includes("analytic") ? (title = `${type.split("-")[1]} wise users : ${count}`) : (
                         title = `${type.split("_")[0]} wise signups count : ${count}`);
@@ -3651,13 +3673,13 @@
                             );
                         if (content_type.value == "page_grader") {
                             restDomain =
-                                `v2/ninjaseo/domain/page_graders?fields=distinct(substring_index(domain_url,'/',3)) as website_url,count(*) as count&${this.timeFormat()}&group_by=keyword`;
+                                `v2/ninjaseo/domain/page_graders?fields=distinct(substring_index(domain_url,'/',3)) as website_url,count(*) as count&group_by=keyword`;
                         } else if (content_type.value == "rankings") {
                             restDomain =
-                                `v2/ninjaseo/domain/rankings?fields=id,url as website_url,count(distinct%20keywords)%20as%20count&${this.timeFormat()} &group_by=url`;
+                                `v2/ninjaseo/domain/rankings?fields=id,url as website_url,count(distinct%20keywords)%20as%20count &group_by=url`;
                         } else {
                             restDomain =
-                                `v2/ninjaseo/domain/link_trackings?fields=id,site_url as website_url,count(distinct%20keyword)%20as%20count&${this.timeFormat()} &group_by=site_url`;
+                                `v2/ninjaseo/domain/link_trackings?fields=id,site_url as website_url,count(distinct%20keyword)%20as%20count&group_by=site_url`;
                         }
 
                         let host_name = window.location.href.includes("env=dev") ?
@@ -3699,7 +3721,7 @@
                                         data: item
                                     });
                                 });
-                                self.getSEOStatistics(content_type.value, totalSignupCount);
+                                self.getSEOStatistics(content_type.value, data.length);
                                 var reportData = {
                                     totalSignupCount: totalSignupCount,
                                     reportData: dataSet
@@ -3742,31 +3764,8 @@
                             (token =
                                 "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InJhaHVsLnZhbmFnYXJpQDUwMGFwcHMuY29tIiwidGVuYW50X2lkIjoxMzQxNiwidXNlcl9pZCI6MTg0ODYsInN1YnNjcmliZWQiOiJubyIsImV4cCI6IjE2NTE5MjYwMzAiLCJlbnYiOiJhcDEifQ.L-VNvrh9Tj70azJX8WQ6r3v5vZTJ330mgT5LvUEBZN4"
                             );
-                        if (content_type.value == 'total_prospects_memberwise') {
-                            restDomain =
-                                `v2/prospectly/domain/prospects?fields=count(*) as count,created_by as name&group_by=created_by&order_by=count desc&${self.timeFormat()}`
-                        } else if (content_type.value == 'total_calls_memberwise') {
-                            restDomain =
-                                `v2/prospectly/domain/prospect_stats?fields=count(*) as count,created_by as name&group_by=created_by&order_by=count desc&${self.timeFormat()} and type='Call'`
-                        } else if (content_type.value == 'total_emails_memberwise') {
-                            restDomain =
-                                `v2/prospectly/domain/prospect_stats?fields=count(*) as count,created_by as name&group_by=created_by&order_by=count desc&${self.timeFormat()} and type='Email'`
-                        } else if (content_type.value == 'total_tasks_memberwise') {
-                            restDomain =
-                                `v2/prospectly/domain/tasks?fields=count(*) as count,owner as name&group_by=owner&order_by=count desc&${self.timeFormat()}`
-                        } else if (content_type.value == 'total_tasks_open_memberwise') {
-                            restDomain =
-                                `v2/prospectly/domain/tasks?fields=count(*) as count,owner as name&group_by=owner&order_by=count desc&${self.timeFormat()} and status in ('New','Pending','In Progress')`
-                        } else if (content_type.value == 'total_tasks_outstanding_memberwise') {
-                            restDomain =
-                                `v2/prospectly/domain/tasks?fields=count(*) as count,owner as name&group_by=owner&order_by=count desc&${self.timeFormat()} and status='Outstanding'`
-                        } else if (content_type.value == 'total_tasks_closed_memberwise') {
-                            restDomain =
-                                `v2/prospectly/domain/tasks?fields=count(*) as count,owner as name&group_by=owner&order_by=count desc&${self.timeFormat()} and status='Completed'`
-                        } else {
-                            restDomain =
-                                `v2c/outreachly/${content_type.value}?start_date=${moment(this.fromDate).format("YYYY-MM-DD")}&end_date=${moment(this.toDate).format("YYYY-MM-DD")}&order_by=count desc`
-                        }
+                        restDomain =
+                            `v2c/outreachly/${content_type.value}?start_date=${moment(this.fromDate).format("YYYY-MM-DD")}&end_date=${moment(this.toDate).format("YYYY-MM-DD")}`
                         let host_name = window.location.href.includes("env=dev") ?
                             "https://api.dev.500apps.com" :
                             "https://api.ap1.500apps.com"; //Set host
@@ -3788,13 +3787,7 @@
                                     self.emptyState = true;
                                     content_type.emptyState = true;
                                 }
-                                if (content_type.value.includes('memberwise')) {
-                                    data.map((element) => {
-                                        let user = window.Users.find(id => id.id == element.name)
-                                        element.name = user?.name ? user.name : 'No Owner'
-                                        return element
-                                    })
-                                }
+
                                 var dataSet = [];
                                 var totalSignupCount = 0;
                                 data.filter((item) => {
@@ -3826,15 +3819,15 @@
                         );
                     if (app_name == "page_grader") {
                         restDomain =
-                            `v2/ninjaseo/domain/page_graders?${this.timeFormat()}and domain_url like '${domain}%'`;
+                            `v2/ninjaseo/domain/page_graders?where=domain_url like '${domain}%'`;
                     } else if (app_name == "rankings") {
-                        restDomain = `v2/ninjaseo/domain/rankings?${this.timeFormat()}and url='${domain}'`;
+                        restDomain = `v2/ninjaseo/domain/rankings?where=url='${domain}'`;
                     } else if (app_name === 'support') {
                         restDomain =
                             `v2/support/domain/ticket_details?${this.timeFormat()}and group_id = '${domain}%'`;
                     } else {
                         restDomain =
-                            `v2/ninjaseo/domain/link_trackings?${this.timeFormat()} and site_url='${domain}'`;
+                            `v2/ninjaseo/domain/link_trackings?where=site_url='${domain}'`;
                     }
                     let host_name = window.location.href.includes("env=dev") ? "https://api.dev.500apps.com" :
                         "https://api.ap1.500apps.com"; //Set host
@@ -3924,7 +3917,8 @@
                 showHistory(data, type) {
                     const self = this;
                     self.resetHistory();
-                    if (self.seoPageType === "page_grader") {
+                    self.resetHistory();
+                    if (type === "page_grader") {
                         let host_name = window.location.href.includes("env=dev") ?
                             "https://api.dev.500apps.com" : "https://api.ap1.500apps.com"; //Set host
                         let token;
@@ -3950,7 +3944,7 @@
                             .then(function (data) {
                                 self.pageGraderHistory = data;
                             });
-                    } else if (self.seoPageType === "rankings") {
+                    } else if (type === "rankings") {
                         if (data.history) self.rankingHistory = data;
                     } else {
                         if (type === "notes" || type === "activities") {
@@ -3991,12 +3985,8 @@
                     self.linkTrackingActivities = [];
                 },
                 async getUserName(id) {
-                    if (this.this.userNamesData[id]) return this.userNamesData[id];
-                    else {
-                        var userDetails = await this.getUserData(id);
-                        this.userNamesData[id] = userDetails[0].name;
-                        return userDetails[0].name;
-                    }
+                    var userDetails = await this.getUserData(id);
+                    return userDetails[0].name;
                 },
                 getUserData(id) {
                     return new Promise((resolve) => {
@@ -4041,9 +4031,9 @@
                             "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InJhd2liYWJidS5kYWtvanVANTAwYXBwcy5jb20iLCJ0ZW5hbnRfaWQiOjEzNDE2LCJ1c2VyX2lkIjoxODQxMSwic3Vic2NyaWJlZCI6Im5vIiwiZXhwIjoiMTY1MjEwNzczNyIsImVudiI6ImFwMSJ9.eFL8jtuSsupX2lAdewU0-VZvedA_CB7drmEms_NldeU"
                         );
                     if (type === "rankings") var restDomain =
-                        `/v2/ninjaseo/domain/rankings?fields=keyword_position as rank&${self.timeFormat()}`;
+                        `/v2/ninjaseo/domain/rankings?fields=keyword_position as rank`;
                     else if (type === "keywords_count") restDomain =
-                        `/v2/ninjaseo/domain/rankings?fields=count(distinct keyword_position) as keyword_count&${self.timeFormat()}`;
+                        `/v2/ninjaseo/domain/rankings?fields=count(keywords) as keyword_count`;
                     fetch(`${host_name}${restDomain}`, {
                         method: "GET",
                         headers: {
@@ -4087,7 +4077,7 @@
                     return url.host;
                 },
                 getPercentage(value) {
-                    return parseFloat((value.length / this.RankingsDomainCount) * 100).toFixed(2);
+                    return parseFloat((value.length / this.RankingsKeywordCount) * 100).toFixed(2);
                 },
                 /**
                  * Compares last two position history and return status
