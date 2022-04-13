@@ -1,4 +1,4 @@
-**Question 1:** What is the output of below function calls
+**Question 1:** What is the output of below function calls. Give detailed explanation on what you understood.
   ```
   const circle = {
   radius: 20,
