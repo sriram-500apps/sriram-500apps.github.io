@@ -51,3 +51,19 @@ Sample Output : a ( 5 times )
 "2nd choice is Green."
 "3rd choice is Red."
 ```
+
+> Question 9: There are two arrays with individual values, write a JavaScript program to compute the sum of each individual index value from the given arrays.
+```
+Sample array :
+array1 = [1,0,2,3,4];
+array2 = [3,5,6,7,8,13];
+Expected Output :
+[4, 5, 8, 10, 12, 13]
+```
+
+> Question 10: Write a JavaScript function to remove. 'null', '0', '""', 'false', 'undefined' and 'NaN' values from an array.
+```
+Sample array : [NaN, 0, 15, false, -22, '',undefined, 47, null]
+Expected result : [15, -22, 47]
+```
+
