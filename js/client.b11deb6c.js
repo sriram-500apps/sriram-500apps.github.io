@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkably_project"]=self["webpackChunkably_project"]||[]).push([[47],{4967:function(e,n,t){t.r(n),t.d(n,{default:function(){return s}});var l=function(){var e=this,n=e._self._c;return n("div",[e._v("Client Page")])},u=[],r={name:"ClientPage",data(){return{}}},a=r,c=t(1001),i=(0,c.Z)(a,l,u,!1,null,null,null),s=i.exports}}]);
+//# sourceMappingURL=client.b11deb6c.js.map
